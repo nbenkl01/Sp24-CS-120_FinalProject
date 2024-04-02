@@ -1,0 +1,21 @@
+1. Hint giving app
+Working on a difficult crossword puzzle, and want to get an idea as to what the answer is, but not the full thing? Get a helpful hint that leads you in the right direction, without giving you the answer
+--API to an LLM (perhaps some less powerful free version), feed in question and known letters/length of word, ask for hint without giving the answer away
+--support for multiple puzzle types?
+--Try asking for multiple/3 levels of clues, revealed one at a time?
+--Tested this on chatgpt and it seems to be reasonably good at it
+--Might want to brainstorm more complexities to add so its not just another textbox for chatgpt - use a database somehow, store old queries for faster access?
+https://rapidapi.com/rphrp1985/api/chatgpt-42
+Only 5 dollars to get what I think we would need to make if using rapidapi version
+
+2.Exercise Tracking App 
+Input your past exercises at the gym/running/biking, and we will keep track of it for you to check your progress over time
+-Set gym plans, and record weight/sets/reps for each time you go to the gym, same for running time/distance
+-Check trends and graph progress over time
+-Not sure what to use for the API - there is an API on rapidAPI that can recommend exercieses based on desired bodypart and list exercise explanations
+https://rapidapi.com/naeimsalib/api/work-out-api1/
+
+3.Flashcard App
+-Create flashcards for studying, then quiz yourself on them
+-Create questions like fill in the blank or multiple choice based on the provided word definition
+-Not sure on API for this one - an LLM could help add supplementary definitions or help us choose what word to leave out in a fill in the blank game
