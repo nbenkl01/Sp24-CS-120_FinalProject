@@ -1,0 +1,20 @@
+Download Daily puzzles from a ton of available Sources ( as a .puz file)
+https://github.com/thisisparker/xword-dl
+
+Massive Database of past NYT Crossword Puzzles .json files, 1976-2018
+https://github.com/doshea/nyt_crosswords
+
+Reading .puz files:
+https://github.com/jahorne/AcrossLiteToText
+in Javascript:
+https://github.com/david-j-park/puz2js
+
+
+
+Possible order of operations -
+Daily download and maintain the current puzzle at all these sites when it is posted (insert to out SQL database)
+
+First - check if we have that exact clue in a current daily puzzle
+Then, optionally query historical database to see if has been asked by the NYtimes ever in the past
+Last Resort - have the LLM guess (probably low success rate at this point?) or say it doesn't know
+
