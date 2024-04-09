@@ -19,3 +19,32 @@ https://rapidapi.com/naeimsalib/api/work-out-api1/
 -Create flashcards for studying, then quiz yourself on them
 -Create questions like fill in the blank or multiple choice based on the provided word definition
 -Not sure on API for this one - an LLM could help add supplementary definitions or help us choose what word to leave out in a fill in the blank game
+
+4. "Swap-a-Roo” (Kangaroo Icon)
+- Transactional web app allowing users to exchange pre-loved goods (books, games, clothes, tools, etc.).- start just with books and move to more if we have time
+- Essence:
+    1. Users send in “Pre-Loved” goods.
+    2. We assign users “Credit” value based on submitted goods.
+    3. Users spend “Credits” on other user’s listed goods.
+    4. Each individual good has assigned_unique-id  so users who co-owned can interact. (Social aspect)
+
+Backend:
+- Database Tables:
+    - Users: Store user info—username, email, password (hashed), and credits balance.
+    - Items: Store item info—name, description, category, condition, owner ID, and credit value.
+    - Transactions: Store transaction records—buyer ID, seller ID, item ID, transaction timestamp, and status.
+- API Design (Internal):
+    - POST /api/auth/login: User login authentication.
+    - POST /api/items/list: List an item for swapping.
+    - GET /api/items/browse: Fetch available items for browsing.
+- Possible External APIs:
+    - Get Book Info & Price: https://rapidapi.com/Ionut-Cora/api/bookshelves/
+    - Get VideoGame Valuation & Price: https://rapidapi.com/SapphireWare/api/video-game-price/ (https://rapidapi.com/cantagalloedoardo/api/steam-market-and-store/)
+
+Frontend Pages:
+- Authentication Page: Initial page for user authentication, login, registration, and password recovery.
+- Item Listing Page: Page for users to list their pre-loved goods for swapping. Include form fields for item details such as name, description, category, condition, and upload images. (call API for credit valuation and missing info.)
+- Browse Items Page: Page where users can browse available items listed by other users. Implement search and filter to help users find items based on categories, keywords, or conditions.
+- Cart & Order Confirmation Pages: Pages for users to review transaction details before confirming the transaction & conformation page for after transaction completed. Display information about the selected item, the user's credit balance, and any shipping time.
+- User Dashboard: Dashboard where users can view their profile, credit balance, transaction history, and manage their listings. Provide options to edit or delete listings and view details of past transactions.
+- Contact Us: Simple form for handling user complaints or questions.
