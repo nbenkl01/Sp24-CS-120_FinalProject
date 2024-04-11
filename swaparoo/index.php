@@ -1,4 +1,4 @@
-<?php session_start(); include 'functions.php'; shared_header('Home')?>
+<?php session_start(); include 'functions.php'; shared_header('Home') ?>
 
 <div class="featured">
     <h2>Under Development</h2>
