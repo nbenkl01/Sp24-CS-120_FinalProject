@@ -68,6 +68,13 @@ header nav a {
 	margin: 0 10px;
 }
 
+header nav span a {
+	text-decoration: none;
+	color: #666666;
+	padding: 5px 5px;
+	margin: 0px 0px;
+}
+
 header nav a:hover {
 	border-bottom: 1px solid #999999;
 }

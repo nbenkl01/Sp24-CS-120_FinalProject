@@ -140,7 +140,7 @@ CREATE TABLE `Users` (
   `user_id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password_hash` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `credits_balance` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -148,7 +148,7 @@ CREATE TABLE `Users` (
 -- Dumping data for table `Users`
 --
 
-INSERT INTO `Users` (`user_id`, `username`, `email`, `password_hash`, `credits_balance`) VALUES
+INSERT INTO `Users` (`user_id`, `username`, `email`, `password`, `credits_balance`) VALUES
 (1, 'nbenkler', 'Noam.Benkler@tufts.edu', 'nb', 100),
 (2, 'cowen', 'Casey.Owen@tufts.edu', 'co', 200),
 (3, 'jgan', 'Jin.Gan@tufts.edu', 'jg', 150);
