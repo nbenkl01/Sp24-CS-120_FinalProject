@@ -1,4 +1,4 @@
-<?=shared_header('Home')?>
+<?php session_start(); include '../functions.php'; shared_header('Cart')?>
 
 <div class="featured">
     <h2>Under Development</h2>
@@ -6,4 +6,4 @@
 </div>
 </div>
 
-<?=shared_footer()?>
+<?php shared_footer() ?>

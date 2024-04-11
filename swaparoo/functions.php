@@ -15,6 +15,13 @@ function connect_mysql() {
 
 // Standard header
 function shared_header($title) {
+    
+    // Connect to MySQL database
+    
+    $pdo = connect_mysql();
+
+    // Set default time zone.
+    date_default_timezone_set('America/New_York');
     $num_items_in_cart = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
     ?>
 <!DOCTYPE html>
@@ -22,32 +29,32 @@ function shared_header($title) {
     <head>
         <meta charset="utf-8">
         <title><?= $title ?></title>
-        <link href="style.css" rel="stylesheet" type="text/css">
+        <link href="/swaparoo/style.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     </head>
     <body>
         <header>
             <div class="content-wrapper">
                 <h1>
-                    <a href="index.php">
+                    <a href="/swaparoo/">
                         <i class="fas fa-tents"></i>
                         Swap-a-Roo
                         <i class="fas fa-person-circle-question"></i>
                     </a>
                 </h1>
                 <nav>
-                    <a href="index.php">Home</a>
-                    <a href="index.php?page=items">The Swap Shop</a>
-                    <a href="index.php?page=register">Register</a>
+                    <a href="/swaparoo/">Home</a>
+                    <a href="/swaparoo/items/">The Swap Shop</a>
+                    <a href="/swaparoo/signin/register/">Register</a>
                 </nav>
                 <div class="link-icons">
-                    <a href="index.php?page=search">
+                    <a href="/swaparoo/search/">
                         <i class="fas fa-search"></i>
                     </a>
-                    <a href="index.php?page=account">
+                    <a href="/swaparoo/account/">
                         <i class="fas fa-user-circle"></i>
                     </a>
-                    <a href="index.php?page=cart">
+                    <a href="/swaparoo/cart/">
                         <i class="fas fa-shopping-cart"></i>
                         <span><?= $num_items_in_cart ?></span>
                     </a>
