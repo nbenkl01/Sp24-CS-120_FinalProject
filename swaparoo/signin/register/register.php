@@ -36,20 +36,14 @@ if (strlen($_POST['password']) > 20 || strlen($_POST['password']) < 2) {
     exit;
 }
 
-// We need to check if the account with that username exists.
 if ($stmt = $pdo->prepare('SELECT user_id, password FROM Users WHERE username = ?')) {
-    // Bind parameters (s = string, i = int, b = blob, etc), hash the password using the PHP password_hash function.
     $stmt->bindParam(1, $_POST['username']);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    // Store the result so we can check if the account exists in the database.
     if ($result) {
-        // Username already exists
         echo '<script>alert("Username exists, please choose another!"); window.location.href = "index.php";</script>';
     } else {
-        // Username doesn't exists, insert new account
         if ($stmt = $pdo->prepare('INSERT INTO Users (username, password, email) VALUES (?, ?, ?)')) {
-            // We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $stmt->bindParam(1, $_POST['username']);
             $stmt->bindParam(2, $password);
@@ -57,13 +51,10 @@ if ($stmt = $pdo->prepare('SELECT user_id, password FROM Users WHERE username = 
             $stmt->execute();
             echo '<script>alert("You have successfully registered! You can now login!"); window.location.href = "../index.php";</script>';
         } else {
-            // Something is wrong with the SQL statement, so you must check to make sure your accounts table exists with all three fields.
             echo '<script>alert("Could not prepare statement!"); window.location.href = "index.php";</script>';
         }
     }
 } else {
-    // Something is wrong with the SQL statement, so you must check to make sure your accounts table exists with all 3 fields.
     echo '<script>alert("Could not prepare statement!"); window.location.href = "index.php";</script>';
 }
-$pdo = null; // Close connection
 ?>
