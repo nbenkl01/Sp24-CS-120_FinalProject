@@ -121,17 +121,26 @@ header .link-icons a span {
 main .featured {
 	display: flex;
 	flex-direction: column;
-	/* background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)) ,  url(../images/logo.webp); */
-	background-image: url(../images/background.webp);
-	/* background-color: white; */
+	/* background-image: linear-gradient(rgba(165, 165, 165, 0.527),rgba(171, 170, 170, 0.5)) ,  url(https://media.audleytravel.com/-/media/images/home/north-africa-and-the-middle-east/oman/letterbox-images/new-istock/istock_000064200767_desert_dunes.jpg?q=79&w=1920&h=640); */
+	background-image: linear-gradient(#ffdab9,#efac71);
+	/* background-image: url(https://media.audleytravel.com/-/media/images/home/north-africa-and-the-middle-east/oman/letterbox-images/new-istock/istock_000064200767_desert_dunes.jpg?q=79&w=1920&h=640); */
 	background-repeat: no-repeat;
-	background-attachment: fixed;
 	background-position: center;
-	background-size: contain;
+	background-size: center;
 	height: 500px;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-end;
 	text-align: center;
+	z-index: -1;
+}
+
+main .featured img {
+	max-width: auto;
+	height: 350px;
+	border-radius: 50%; 
+	display: block;
+	margin: 0 auto;
+	z-index: 9999;
 }
 
 main .featured h2,
@@ -140,6 +149,7 @@ main .featured p {
 	margin: 0;
 	width: 1050px;
 	color: #ffffff;
+	z-index: 9999;
 }
 
 main .featured h2 {
