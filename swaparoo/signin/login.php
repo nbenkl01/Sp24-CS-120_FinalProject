@@ -23,7 +23,7 @@ if ($stmt = $pdo->prepare('SELECT user_id, password FROM Users WHERE username = 
             session_regenerate_id();
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['name'] = $_POST['username'];
-            $_SESSION['id'] = $result['id'];
+            $_SESSION['user_id'] = $result['user_id'];
             echo '<script>alert("Welcome back, ' . htmlspecialchars($_SESSION['name'], ENT_QUOTES) . '!"); window.location.href = "../";</script>';
         } else {
             // Incorrect password
