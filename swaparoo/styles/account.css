@@ -1,0 +1,56 @@
+.account {
+    margin-left: 15%;
+}
+
+h1 {
+    font-size: 35px;
+}
+
+h2 {
+    font-size: 25px;
+}
+
+.balance i, .balance div {
+    font-size: 35px;
+    display: inline
+}
+
+.balance i {
+    color: #c5ad41;
+}
+
+.profilerow {
+    display: flex;
+    width: 50%;
+    height: 50px;
+    align-items: center;
+    border-bottom: 1px solid #d4d4d4
+}
+
+.profilerow:hover {
+    background-color: #f5f5f5;
+}
+
+.profilecell {
+    margin-right: 10px;
+    width: 500px;
+    justify-content: center;
+    /* vertical-align: middle; */
+}
+
+.profilecell, .profilecell a, .profilecell a i {
+    font-size: 20px;
+}
+
+.profilecell a, .profilecell a i {
+    text-decoration: none;
+    color: #004c8f
+}
+
+.profilecell a:hover {
+    border-bottom: solid 1px #004c8f;
+}
+
+.profilecellheader {
+    color: #333333;
+}
