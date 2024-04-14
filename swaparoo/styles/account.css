@@ -2,10 +2,6 @@
     margin-left: 15%;
 }
 
-.changeemail {
-    margin: 100px auto;
-    text-align: center;
-}
 
 h1 {
     font-size: 35px;
@@ -58,6 +54,11 @@ h2 {
 
 .profilecellheader {
     color: #333333;
+}
+
+.changeemail, .changepassword {
+    margin: 100px auto;
+    text-align: center;
 }
 
 .changeform input {

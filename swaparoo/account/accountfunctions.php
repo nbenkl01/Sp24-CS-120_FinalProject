@@ -24,9 +24,6 @@ function profile_info() {
             <div class="profilecell profilecellheader">Username</div>
             <div class="profilecell"><?= $name ?></div>
             <div class="profilecell">
-                <a href="/swaparoo/account/changeusername/">
-                    Edit <i class="fas fa-edit"></i>
-                </a>
             </div>
         </div>
         <div class="profilerow">
@@ -42,7 +39,7 @@ function profile_info() {
             <div class="profilecell profilecellheader">Password</div>
             <div class="profilecell">**********</div>
             <div class="profilecell">
-                <a href="/swaparoo/account/changeemail/">
+                <a href="/swaparoo/account/changepassword/">
                     Edit <i class="fas fa-edit"></i>
                 </a>
             </div>
