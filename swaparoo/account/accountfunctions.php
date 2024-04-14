@@ -8,7 +8,7 @@ function profile_info() {
         $stmt->bindParam(1, $user_id);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $balance = $result['credits_balance'];
+        $balance = number_format($result['credits_balance']);
         $email = $result['email'];
     } else {
         echo '<script>alert("Could not find user!"); window.location.href = "/swaparoo/";</script>';
@@ -24,9 +24,6 @@ function profile_info() {
             <div class="profilecell profilecellheader">Username</div>
             <div class="profilecell"><?= $name ?></div>
             <div class="profilecell">
-                <a href="/swaparoo/account/changeusername/">
-                    Edit <i class="fas fa-edit"></i>
-                </a>
             </div>
         </div>
         <div class="profilerow">
@@ -42,7 +39,7 @@ function profile_info() {
             <div class="profilecell profilecellheader">Password</div>
             <div class="profilecell">**********</div>
             <div class="profilecell">
-                <a href="/swaparoo/account/changeemail/">
+                <a href="/swaparoo/account/changepassword/">
                     Edit <i class="fas fa-edit"></i>
                 </a>
             </div>
