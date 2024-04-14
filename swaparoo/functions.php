@@ -116,7 +116,7 @@ function nonuser_header($title, $num_items_in_cart) {
                     <a href="/swaparoo/search/">
                         <i class="fas fa-search"></i>
                     </a>
-                    <a href="/swaparoo/account/">
+                    <a href="/swaparoo/signin/">
                         <i class="fas fa-user-circle"></i>
                     </a>
                     <!-- <a href="/swaparoo/signin/logout.php"><i class="fas fa-sign-out-alt"></i></a> -->

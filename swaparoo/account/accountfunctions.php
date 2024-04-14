@@ -8,7 +8,7 @@ function profile_info() {
         $stmt->bindParam(1, $user_id);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $balance = $result['credits_balance'];
+        $balance = number_format($result['credits_balance']);
         $email = $result['email'];
     } else {
         echo '<script>alert("Could not find user!"); window.location.href = "/swaparoo/";</script>';
