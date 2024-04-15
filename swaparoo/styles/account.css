@@ -4,11 +4,15 @@
 
 
 h1 {
-    font-size: 35px;
+    font-size: 40px;
 }
 
 h2 {
-    font-size: 25px;
+    font-size: 30px;
+}
+
+.soldh2, .boughth2 {
+    margin-bottom: 0px;
 }
 
 .balance i, .balance div {
@@ -17,6 +21,14 @@ h2 {
 }
 
 .balance i {
+    color: #c5ad41;
+}
+
+.creditcost i, .creditcost div {
+    display: inline
+}
+
+.creditcost i {
     color: #c5ad41;
 }
 
@@ -36,7 +48,6 @@ h2 {
     margin-right: 10px;
     width: 500px;
     justify-content: center;
-    /* vertical-align: middle; */
 }
 
 .profilecell, .profilecell a, .profilecell a i {
@@ -56,6 +67,67 @@ h2 {
     color: #333333;
 }
 
+.transacteditemstable {
+    min-width: 75%;
+    border-collapse:collapse;
+}
+
+.transacteditemstable:last-child {
+    border-bottom: 2px solid #d1d1d1;
+}
+.transactionrow {
+    border-bottom: 1px solid #e9e9e9
+}
+
+.transactionrow, .transactionheaderrow {
+    height: 50px;
+    align-items: center;
+}
+
+.transactionheaderrow {
+    border-bottom: 3px solid #d1d1d1;
+    
+}
+.transactionheadercell {
+    font-size: 20px;
+}
+
+.transactionrow:hover {
+    background-color: #f0f0f0;
+}
+
+.transactioncell, .transactionheadercell {
+    margin-right: 10px;
+    justify-content: center;   
+}
+
+.transactioncell {
+    color: #333333;
+    text-align: center;    
+}
+
+.transactioncell, .creditcost i, .creditcost div, .transactiontitletext, .transactionauthortext {
+    font-size: 18px;
+}
+.transactioncell img {
+    height: 125px;
+}
+
+.transactionitemname {
+    max-width: 200px;
+}
+
+.transactionitemname a {
+    text-decoration: none;
+    color: #333333;
+}
+
+.transactiontitletext {
+    font-weight: bold;
+    min-width: fit-content;
+    margin-bottom: 5px;
+}
+
 .changeemail, .changepassword {
     margin: 100px auto;
     text-align: center;
@@ -65,7 +137,6 @@ h2 {
     display: block;
     margin: 15px auto;
     font-size: 16px;
-    /* justify-self: center; */
 }
 
 .changeform {
