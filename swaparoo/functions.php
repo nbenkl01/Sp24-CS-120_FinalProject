@@ -63,6 +63,7 @@ function user_header($title, $num_items_in_cart) {
                 <nav>
                     <a href="/swaparoo/">Home</a>
                     <a href="/swaparoo/items/">The Swap Shop</a>
+                    <a href="/swaparoo/myitems/">My Items</a>
                     <!-- <a href="/swaparoo/signin/register/">Register</a> -->
                 </nav>
                 <div class="link-icons">
