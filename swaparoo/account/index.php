@@ -4,23 +4,6 @@
     header("Location: /swaparoo/signin/");
 }
 ?>
-<!-- Headers: Profile -->
-<!-- Show Credit Balance -->
-<!-- Show username, email, password (as stars), Account Settings(link)-->
-
-<!-- Account Settings -->
-
-<!-- My Items -->
-<!-- item id (link to item page), item name, date acquired, time owned -->
-
-<!-- My Swap Story -->
-<!-- My Sold Items -->
-<!-- Show item, desciription, Transction date, Status, # Credits, Buyer (user_id) -->
-
-<!-- My Bought Items -->
-<!-- item id (link to item page), item name, Transction date, Status, # Credits, Seller (user_id) -->
-
-
 
 <div class = "account">
     <h1>Profile</h1>
