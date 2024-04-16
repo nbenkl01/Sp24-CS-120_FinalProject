@@ -1,0 +1,114 @@
+.myitems{
+    margin-left: 15%;
+}
+
+
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+
+.listedh2, .ownedh2 {
+    margin-bottom: 0px;
+}
+
+
+
+.itemstable {
+    min-width: 75%;
+    border-collapse:collapse;
+}
+
+.itemstable:last-child {
+    border-bottom: 2px solid #d1d1d1;
+}
+.entryrow {
+    border-bottom: 1px solid #e9e9e9
+}
+
+.entryrow:has(+ .firstrowlisted) {
+    border-bottom: 1px solid #464646;
+}
+
+.entryrow, .entryheaderrow {
+    height: 50px;
+    align-items: center;
+}
+
+.entryheaderrow {
+    border-bottom: 2px solid #808080;
+    
+}
+.entryheadercell {
+    font-size: 20px;
+    color:#333333
+}
+
+.entryrow:hover {
+    background-color: #f0f0f0;
+}
+
+.entrycell, .entryheadercell {
+    margin-right: 10px;
+    justify-content: center;   
+}
+
+.entrycell {
+    color: #333333;
+    text-align: center;    
+}
+
+.entrycell, .creditcost i, .creditcost div, .entrytitletext, .entryauthortext {
+    font-size: 18px;
+}
+.entrycell img {
+    height: 125px;
+}
+
+.entryitemname {
+    max-width: 200px;
+}
+
+.entryitemname a {
+    text-decoration: none;
+    color: #333333;
+}
+
+.entrytitletext {
+    font-weight: bold;
+    min-width: fit-content;
+    margin-bottom: 5px;
+}
+
+.listingsubmit {
+    height: 35px;
+    width: 140px;
+    font-size: 20px;
+    background-color: transparent;
+    border: 2px solid #333333;
+    border-radius: 1px;
+    color:#333333; 
+    box-sizing: border-box;
+    transition: 0.3s;
+    box-shadow: 1px 1px
+}
+
+.listingsubmit:hover {
+    background-color: #fdcc5b;
+    border: 2px solid black;
+    color: black;
+    box-shadow: 1px 1px black;
+} 
+
+/* .firstrowlisted::before {
+    border-bottom: 1px solid black;
+} */
+
+.entrycellpending , .titletextpending, .authortextpending{
+    font-style: italic;
+    color: #7a7a7a
+}
