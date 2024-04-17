@@ -102,6 +102,7 @@ function nonuser_header($title, $num_items_in_cart) {
     <head>
         <meta charset="utf-8">
         <title><?= $title ?></title>
+        <link rel="icon" href="/images/transparent_logo.png">
         <link href="/swaparoo/styles/style.css" rel="stylesheet" type="text/css">
         <link href="/swaparoo/styles/registration.css" rel="stylesheet" type="text/css">
         <link href="/swaparoo/styles/account.css" rel="stylesheet" type="text/css">
