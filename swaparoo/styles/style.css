@@ -25,8 +25,9 @@ h1, h2, h3, h4, h5 {
 }
 
 .content-wrapper {
-	width: 1050px;
+	min-width: 1050px;
 	margin: 0 auto;
+    width: 70%;
 }
 
 header {
@@ -46,6 +47,7 @@ header h1 {
 	font-size: 20px;
 	margin: 0;
 	padding: 24px 0;
+    justify-content: center;
 }
 
 header h1 a {
@@ -115,9 +117,11 @@ header .link-icons a span {
 	width: 16px;
 	height: 16px;
 	font-weight: bold;
-	position: absolute;
-	top: 22px;
-	right: 0;
+	position: relative;
+    top: -10px;
+    right: 10px;
+	/* top: 22px; */
+	/* right: 0; */
 }
 
 main .featured {
@@ -182,4 +186,22 @@ footer {
 	border-top: 1px solid #DDDDDD;
 	padding: 20px 0;
 	width: 100%;
+}
+
+.headerbalance i, .headerbalance div {
+    display: inline;
+    font-size: 18px;
+}
+
+.headerbalance i {
+    color: #c5ad41;
+}
+
+.accountlink div, .accountlink i {
+    display: inline;
+}
+
+
+.accountlink div:hover {
+    border-bottom: 1px solid #f1e9df!important;
 }
