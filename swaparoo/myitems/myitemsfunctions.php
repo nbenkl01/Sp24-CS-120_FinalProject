@@ -48,12 +48,12 @@ function listed_items_rows() {
             echo <<<ROW
             <tr class="$rowclass entryrow">
             <td class="entrycell $cellclass">
-            <a href="/swaparoo/items/?item=$item_id">    
+            <a href="/swaparoo/items/items/?item=$item_id">    
             <img src="../../images/items/$item_id.webp">
             </a>
             </td>
             <td class="entrycell $cellclass entryitemname" >
-            <a href="/swaparoo/items/?item=$item_id">
+            <a href="/swaparoo/items/items/?item=$item_id">
             <div>
             <div class="entrytitletext $titletextclass">$title</div>
             <div class="entryauthortext $authortextclass">$author</div>
@@ -110,12 +110,12 @@ function owned_items_rows() {
             echo <<<ROW
             <tr class="entryrow">
             <td class="entrycell">
-            <a href="/swaparoo/items/?item=$item_id">    
+            <a href="/swaparoo/items/items/?item=$item_id">    
             <img src="../../images/items/$item_id.webp">
             </a>
             </td>
             <td class="entrycell entryitemname" >
-            <a href="/swaparoo/items/?item=$item_id">
+            <a href="/swaparoo/items/items/?item=$item_id">
             <div>
             <div class="entrytitletext">$title</div>
             <div class="entryauthortext">$author</div>

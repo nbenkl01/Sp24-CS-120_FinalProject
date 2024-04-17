@@ -50,6 +50,7 @@ function user_header($title, $num_items_in_cart) {
         <link href="/swaparoo/styles/registration.css" rel="stylesheet" type="text/css">
         <link href="/swaparoo/styles/account.css" rel="stylesheet" type="text/css">
         <link href="/swaparoo/styles/myitems.css" rel="stylesheet" type="text/css">
+        <link href="/swaparoo/styles/items.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     </head>
     <body>
@@ -97,6 +98,7 @@ function nonuser_header($title, $num_items_in_cart) {
         <link href="/swaparoo/styles/style.css" rel="stylesheet" type="text/css">
         <link href="/swaparoo/styles/registration.css" rel="stylesheet" type="text/css">
         <link href="/swaparoo/styles/account.css" rel="stylesheet" type="text/css">
+        <link href="/swaparoo/styles/items.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     </head>
     <body>

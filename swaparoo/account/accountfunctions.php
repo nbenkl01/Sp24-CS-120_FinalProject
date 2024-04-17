@@ -71,12 +71,12 @@ function transactions_items_rows($transaction_types) {
             echo <<<ROW
             <tr class="transactionrow">
             <td class="transactioncell">
-            <a href="/swaparoo/items/?item=$item_id">    
+            <a href="/swaparoo/items/items/?item=$item_id">    
             <img src="../../images/items/$item_id.webp">
             </a>
             </td>
             <td class="transactioncell transactionitemname" >
-            <a href="/swaparoo/items/?item=$item_id">
+            <a href="/swaparoo/items/items/?item=$item_id">
             <div>
             <div class="transactiontitletext">$title</div>
             <div class="transactionauthortext">$author</div>
