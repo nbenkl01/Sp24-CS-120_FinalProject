@@ -85,6 +85,50 @@ function show_comments($comments, $parent_id = -1) {
     return $html;
 }
 
+function show_item_history($transactions, $pdo) {
+    // Define an array of accent colors
+    $accentColors = ['#FBCA3E', '#E24A68', '#1B5F8C', '#4CADAD', '#41516C'];
+
+    // Generate timeline items
+    $html = '';
+    $index = 0;
+    foreach ($transactions as $transaction) {
+        $transactionDate = date('F j, Y, g:i a', strtotime($transaction['transaction_timestamp']));
+        $buyerId = $transaction['buyer_id'];
+        $sellerId = $transaction['seller_id'];
+
+        $stmt = $pdo->prepare('SELECT * FROM Items WHERE item_id = ?');
+        $stmt->execute([$_GET['item']]);
+        $item = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Get buyer's username
+        $stmt = $pdo->prepare('SELECT username FROM Users WHERE user_id = ?');
+        $stmt->execute([$buyerId]);
+        $buyer = $stmt->fetch(PDO::FETCH_ASSOC);
+        $buyerUsername = ($buyer) ? $buyer['username'] : 'Unknown';
+
+        // Get seller's username
+        $stmt = $pdo->prepare('SELECT username FROM Users WHERE user_id = ?');
+        $stmt->execute([$sellerId]);
+        $seller = $stmt->fetch(PDO::FETCH_ASSOC);
+        $sellerUsername = ($seller) ? $seller['username'] : 'Unknown';
+
+        $price = $transaction['price'];
+        $html .= '<li style="--accent-color:' . $accentColors[$index % count($accentColors)] . '">';
+        $html .= '<div class="date">' . $transactionDate . '</div>';
+        $html .= '<div class="title"> Swap - '. $price . ' <i class="fas fa-coins" style = "color: #c5ad41;"></i> </div>';
+        // '<li><strong>' . $transactionDate . '</strong>: Sold from ' . $sellerUsername . ' to ' . $buyerUsername . '</li>';
+        $html .= '<div class="descr"><strong>' .  htmlspecialchars($buyerUsername) . '</strong> swapped for <i>' . $item["title"] . '</i> on ' . $transactionDate . '</div>';
+        // $html .= '<div class="descr">' . htmlspecialchars($transaction['details']) . '</div>';
+        $html .= '</li>';
+
+        $index++;
+    }
+
+    echo $html;
+}
+
+
 // This function is the template for the write comment form
 function show_write_comment_form($parent_id = -1) {
     $html = '';
@@ -166,7 +210,7 @@ $comments_info = $stmt->fetch(PDO::FETCH_ASSOC);
     </div>
 </div>
 
-<div class = "content-wrapper"> 
+<div class = "iteminfo content-wrapper"> 
     <div class="navigation-links">
         <a href="#item-description" class="internal-nav-link active">Item Description</a> <a href="#comments" class="internal-nav-link">Comments</a>  <a href="#history" class="internal-nav-link no-border">Item History</a>
     </div>
@@ -191,9 +235,38 @@ $comments_info = $stmt->fetch(PDO::FETCH_ASSOC);
     </div>
 
     <!-- Item History -->
-    <div class="content-section history" id="history"  style="display: none;">
-        <p>To-Do</p>
-        <!-- Your comments section content here -->
+    <div class="content-section history" id="history" style="display: none;">
+        <!-- <h2>Item History</h2> -->
+        <ul id="timeline">
+            <?php
+            // Query the Transactions table to get the history of the item
+            $stmt = $pdo->prepare('SELECT * FROM Transactions WHERE item_id = ? ORDER BY transaction_timestamp DESC');
+            $stmt->execute([$_GET['item']]);
+            $transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $listingDate = date('F j, Y', strtotime($item['date_added']));
+            $stmt = $pdo->prepare('SELECT username FROM Users WHERE user_id = ?');
+            $stmt->execute([$transactions[0]['seller_id']]);
+            $initialOwner = $stmt->fetch(PDO::FETCH_ASSOC);
+            $initialOwner = ($initialOwner) ? $initialOwner['username'] : 'Unknown';
+            // echo '<li><strong> First Listed by ' .  htmlspecialchars($initialOwner) . ' on ' . $listingDate . '</strong>';
+            
+            $html = '';
+            $html .= '<li style="--accent-color:#41516C">';
+            $html .= '<div class="date">' . $listingDate . '</div>';
+            $html .= '<div class="title"> Initial Listing </div>';
+            // $html .= '<div class="descr">First Listed by <strong>' .  htmlspecialchars($initialOwner) . '</strong> on:<ol><li>' . $listingDate . '</li></ol></div>';
+            $html .= '<div class="descr">First Listed by <strong>' .  htmlspecialchars($initialOwner) . '</strong> on ' . $listingDate . '</div>';
+            $html .= '</li>';
+            echo $html;
+            if (count($transactions) > 0) {
+                show_item_history($transactions, $pdo);
+            }
+             else {
+                echo '<li>No history available for this item.</li>';
+            }
+            ?>
+        </ul>
     </div>
 </div>
 
