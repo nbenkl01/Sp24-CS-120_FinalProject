@@ -1,16 +1,10 @@
 <?php session_start(); include '../functions.php'; ?>
 <?php $pdo = connect_mysql(); date_default_timezone_set('America/New_York'); ?>
 
-<script>
-function showAlert(message) {
-    alert(message);
-    window.location.href = "index.php";
-}
-</script>
-
 <?php 
 if ( !isset($_POST['username'], $_POST['password']) ) {
-    echo '<script>showAlert("Please fill both the username and password fields!");</script>';
+    // echo '<script>showAlert("Please fill both the username and password fields!");</script>';
+    echo "Please fill both the username and password fields!";
     exit;
 }
 
@@ -26,14 +20,16 @@ if ($stmt = $pdo->prepare('SELECT user_id, password, credits_balance FROM Users 
             $_SESSION['user_id'] = $result['user_id'];
             $_SESSION['credits_balance'] = $result['credits_balance'];
             // echo '<script>alert("Welcome back, ' . htmlspecialchars($_SESSION['name'], ENT_QUOTES) . '!"); window.location.href = "../";</script>';
-            echo '<script>window.location.href = "../";</script>';
+            echo '"Welcome back, ' . htmlspecialchars($_SESSION['name'], ENT_QUOTES) . '!"';
         } else {
             // Incorrect password
-            echo '<script>alert("Incorrect username and/or password!"); window.location.href = "index.php";</script>';
+            // echo '<script>alert("Incorrect username and/or password!"); window.location.href = "index.php";</script>';
+            echo '"Incorrect username and/or password!")';
         }
     } else {
         // Incorrect username
-        echo '<script>alert("Incorrect username and/or password!"); window.location.href = "index.php";</script>';
+        // echo '<script>alert("Incorrect username and/or password!"); window.location.href = "index.php";</script>';
+        echo '"Incorrect username and/or password!"';
     }    
 
     // $stmt->close();

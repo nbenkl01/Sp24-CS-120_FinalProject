@@ -1,5 +1,11 @@
 <?php session_start(); include '../../functions.php'; shared_header('Register')?>
 
+<?php 
+if (isset($_SESSION['loggedin'])) {
+    echo "<script>window.location.href = '/swaparoo/';</script>";
+}
+?>
+
 <div class="register">
     <h1>Register</h1>
     <form action="register.php" method="post" autocomplete="off">
@@ -21,3 +27,26 @@
 </div>
 
 <?php shared_footer() ?>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Event listener for comment form submission
+    document.querySelectorAll('.register form').forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(this);
+            fetch('register.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data); // Display success message or handle response
+                window.location.reload();
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+});
+</script>
