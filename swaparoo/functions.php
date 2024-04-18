@@ -45,7 +45,7 @@ function user_header($title, $num_items_in_cart) {
     <head>
         <meta charset="utf-8">
         <title><?= $title ?></title>
-        <link rel="icon" href="/images/logo.webp">
+        <link rel="icon" href="/images/transparent_logo.png">
         <link href="/swaparoo/styles/style.css" rel="stylesheet" type="text/css">
         <link href="/swaparoo/styles/registration.css" rel="stylesheet" type="text/css">
         <link href="/swaparoo/styles/account.css" rel="stylesheet" type="text/css">
@@ -70,17 +70,24 @@ function user_header($title, $num_items_in_cart) {
                     <!-- <a href="/swaparoo/signin/register/">Register</a> -->
                 </nav>
                 <div class="link-icons">
-                    <a href="/swaparoo/search/">
-                        <i class="fas fa-search"></i>
-                    </a>
-                    <a href="/swaparoo/account/">
+                    <a href="/swaparoo/account/" class="accountlink">
+                        <div><?=$_SESSION['name']  ?></div>
                         <i class="fas fa-user-circle"></i>
                     </a>
                     <a href="/swaparoo/signin/logout.php"><i class="fas fa-sign-out-alt"></i></a>
+                    <a href="/swaparoo/search/">
+                        <i class="fas fa-search"></i>
+                    </a>
                     <a href="/swaparoo/cart/">
                         <i class="fas fa-shopping-cart"></i>
                         <span><?= $num_items_in_cart ?></span>
                     </a>
+                    <div class="headerbalance">
+                        <i class="fas fa-coins"></i>
+                        <div>
+                            <?=number_format($_SESSION['credits_balance'])?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
@@ -95,7 +102,7 @@ function nonuser_header($title, $num_items_in_cart) {
     <head>
         <meta charset="utf-8">
         <title><?= $title ?></title>
-        <link rel="icon" href="/images/logo.webp">
+        <link rel="icon" href="/images/transparent_logo.png">
         <link href="/swaparoo/styles/style.css" rel="stylesheet" type="text/css">
         <link href="/swaparoo/styles/registration.css" rel="stylesheet" type="text/css">
         <link href="/swaparoo/styles/account.css" rel="stylesheet" type="text/css">
