@@ -210,7 +210,7 @@ $comments_info = $stmt->fetch(PDO::FETCH_ASSOC);
     </div>
 </div>
 
-<div class = "content-wrapper"> 
+<div class = "iteminfo content-wrapper"> 
     <div class="navigation-links">
         <a href="#item-description" class="internal-nav-link active">Item Description</a> <a href="#comments" class="internal-nav-link">Comments</a>  <a href="#history" class="internal-nav-link no-border">Item History</a>
     </div>

@@ -3,6 +3,13 @@ main .items {
 	margin: 0 auto;
 }
 
+main .item,
+main .iteminfo
+{
+	width: 1050px;
+	margin: 0 auto;
+}
+
 main .recentlyadded .items,
 main .items .items-wrapper {
 	display: flex;
@@ -83,7 +90,7 @@ main .items .items-wrapper .item img {
     left: 0;
     background: linear-gradient(90deg, rgba(2,0,36,.5) 0%, rgba(0,0,0,.5) 2%, rgba(255,255,255,.5) 3%, rgba(247,254,255,.5) 5%, rgba(0,0,0,.5) 7%, rgba(255,255,255,.5) 13%, rgba(255,255,255,.2) 100%);
   } */
-.overlay {
+.item  .overlay {
     display: block;
     top: 0;
     left: 0;
@@ -95,10 +102,15 @@ main .items .items-wrapper .item img {
     z-index: 1; /* Ensure the overlay appears above the image */
 }
 
+/* 
+.item .information {
+    display: flex;
+} */
+
 /* CSS for item content wrapper */
-.item.content-wrapper {
+/* .item.content-wrapper {
     position: relative;
-}
+} */
 
 /* CSS for image cover */
 img.cover {
@@ -165,6 +177,7 @@ main .items .items-wrapper .item:hover .name.marquee {
 
 main > .item {
 	display: flex;
+    justify-content: start;
 	padding: 40px 0;
 }
 
@@ -340,6 +353,11 @@ main > .item section h2{
     padding: auto;
     margin: auto;
 } */
+
+.content-section {
+    max-width: 1050px; /* Ensure the section does not exceed the width of the content-wrapper */
+    overflow: hidden; /* Hide any content that exceeds the bounds */
+}
 
 .comments .comment_header {
     display: flex;
@@ -537,11 +555,11 @@ main > .item section h2{
 .content-section.history ul.noform li {
     margin-bottom: 20px;
 } */
-.no-style {
+/* .no-style {
     list-style: none;
     margin: 0;
     padding: 0;
-  }
+  } */
 /* 
 .content-section.history .date {
     font-size: 18px;
