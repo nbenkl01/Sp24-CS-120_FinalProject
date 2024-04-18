@@ -87,19 +87,30 @@ function show_comments($comments, $parent_id = -1) {
 
 // This function is the template for the write comment form
 function show_write_comment_form($parent_id = -1) {
-    $html = '
-    <div class="write_comment" data-comment-id="' . $parent_id . '">
-        <form method="post" action="">
-            <input name="item_id" type="hidden" value="' . $_GET['item'] . '">    
-            <input name="parent_id" type="hidden" value="' . $parent_id . '">
-            <input name="user_id" type="hidden" value="' . $_SESSION['user_id'] . '">
-            <input name="username" type="text" value="' . $_SESSION['name'] . '" readonly>
-            <textarea name="comment_text" placeholder="Write your comment here..." required></textarea>
-            <button type="submit">Submit Comment</button>
-            <button type="button" class="cancel_comment_btn">Cancel</button>
-        </form>
-    </div>
-    ';
+    $html = '';
+    if (isset($_SESSION['user_id'])) {
+        $html .= '
+        <div class="write_comment" data-comment-id="' . $parent_id . '">
+            <form method="post" action="">
+                <input name="item_id" type="hidden" value="' . $_GET['item'] . '">    
+                <input name="parent_id" type="hidden" value="' . $parent_id . '">
+                <input name="user_id" type="hidden" value="' . $_SESSION['user_id'] . '">
+                <input name="username" type="text" value="' . $_SESSION['name'] . '" readonly>
+                <textarea name="comment_text" placeholder="Write your comment here..." required></textarea>
+                <button type="submit">Submit Comment</button>
+                <button type="button" class="cancel_comment_btn">Cancel</button>
+            </form>
+        </div>';
+    } else {
+        $html .= '
+        <div class="write_comment" data-comment-id="' . $parent_id . '">
+            <form method="post" action="">
+                <input name="username" type="text" value="Unknown User" readonly>
+                <textarea name="comment_text" type = "text" placeholder="Please log in to comment" readonly></textarea>
+                <button type="button" class="cancel_comment_btn">Cancel</button>
+            </form>
+        </div>';
+    }
     return $html;
 }
 
@@ -193,7 +204,27 @@ $comments_info = $stmt->fetch(PDO::FETCH_ASSOC);
 document.addEventListener('DOMContentLoaded', function() {
     // Get all navigation links
     var navLinks = document.querySelectorAll('.internal-nav-link');
-    
+    var lastActiveTab = document.querySelector('.internal-nav-link.active');
+
+    // Add mouseover event listener to each navigation link
+    navLinks.forEach(function(navLink) {
+        navLink.addEventListener('mouseover', function(event) {
+            // Remove 'active' class from all navigation links
+            navLinks.forEach(function(link) {
+                link.classList.remove('active');
+            });
+        });
+    });
+
+    // Add mouseout event listener to revert to last active tab
+    navLinks.forEach(function(navLink) {
+        navLink.addEventListener('mouseout', function(event) {
+            if (lastActiveTab) {
+                lastActiveTab.classList.add('active');
+            }
+        });
+    });
+
     // Add click event listener to each navigation link
     navLinks.forEach(function(navLink) {
         navLink.addEventListener('click', function(event) {
@@ -207,6 +238,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Add 'active' class to the clicked navigation link
             this.classList.add('active');
             
+            // Store reference to the last active tab
+            lastActiveTab = this;
+
             // Get the target section ID from the href attribute
             var targetId = this.getAttribute('href');
             

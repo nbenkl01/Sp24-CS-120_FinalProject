@@ -134,6 +134,8 @@ main .featured {
 	justify-content: flex-end;
 	text-align: center;
 	z-index: -1;
+	margin-bottom: 2rem;
+	padding: 1rem;
 }
 
 main .featured img {

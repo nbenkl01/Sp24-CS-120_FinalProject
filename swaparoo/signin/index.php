@@ -1,8 +1,15 @@
 <?php session_start(); include '../functions.php'; shared_header('Sign In')?>
 
+<?php 
+if (isset($_SESSION['loggedin'])) {
+    echo "<script>window.location.href = '/swaparoo/';</script>";
+}
+?>
+
 <div class="login">
     <h1>Login</h1>
-    <form action="login.php" method="post">
+    <!-- <form action="login.php" method="post"> -->
+    <form method="post" action="">
         <label for="username">
             <i class="fas fa-user"></i>
         </label>
@@ -17,3 +24,26 @@
 </div>
 
 <?php shared_footer() ?>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Event listener for comment form submission
+    document.querySelectorAll('.login form').forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(this);
+            fetch('login.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data); // Display success message or handle response
+                window.location.reload();
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+});
+</script>
