@@ -158,4 +158,26 @@ function shared_footer() {
 </html>
 <?php
 }
+
+function saveThumbnail($url, $itemId, $directory) {
+    $savePath = $directory . $itemId . ".webp";
+
+    $imageData = file_get_contents($url);
+    if ($imageData === false) {
+        return ["error" => "Failed to download image from URL"];
+    }
+
+    $image = imagecreatefromstring($imageData);
+    if ($image === false) {
+        return ["error" => "Failed to create image from data"];
+    }
+
+    if (!imagewebp($image, $savePath)) {
+        imagedestroy($image);
+        return ["error" => "Failed to convert image to WebP"];
+    }
+
+    imagedestroy($image);
+    return ["success" => "Image successfully converted to WebP", "path" => $savePath];
+}
 ?>
