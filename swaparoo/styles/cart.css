@@ -1,0 +1,109 @@
+.cartitemcontainer {
+    width: 60%;
+    height: fit-content;
+    border: 1px solid black;
+    margin: 40px auto;
+    margin-top: 0px;
+    box-sizing: content-box;
+    padding: 10px;
+    /* display: flex; */
+    vertical-align: top;
+    box-shadow: 0px 0px 25px -8px rgba(0,0,0,0.75);
+}
+.cartitemwrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%
+}
+
+.cartitemwrapper > div {
+    /* flex: 1; */
+    flex-grow: 1;
+}
+
+h1 {
+    /* margin-left: 20%; */
+    text-align: center;
+}
+
+.cartitemwrapper a img {
+    width: 200px;
+    height: 300px;
+}
+
+.cartitemtext {
+    /* margin: auto 0; */
+    /* height: */
+    /* vertical-align: middle; */
+    /* vertical-align: top; */
+    /* margin-left: 10%; */
+    /* margin-top: 100px; */
+    /* position: relative;
+    
+    top: 0; */
+    
+    
+}
+
+.cartitemtext a {
+    text-decoration: none;
+    color: #333333;
+}
+
+.cartitemtitletext, .cartitemauthortext {
+    font-size: 25px;
+    /* text-decoration: none; */
+}
+
+.cartitemtitletext {
+    font-weight: bold;
+    min-width: fit-content;
+    margin-bottom: 5px;
+}
+
+.cartitemsellertext {
+    margin-top: 20px;
+    font-size: 20px;
+    display: block;
+}
+
+.cartitemcreditcost {
+    vertical-align: top;
+    /* margin-top: 125px; */
+    /* margin-left: 10%; */
+}
+
+.cartitemcreditcost i, .cartitemcreditcost div {
+    font-size: 35px;
+    display: inline;
+}
+
+.cartitemcreditcost i {
+    color: #c5ad41;
+}
+
+.removefromcartbutton {
+    flex-basis: 300px;
+    flex-grow: 0!important;
+}
+
+.removefromcartsubmit {
+    width: 80%;
+    font-size: 22px;
+    height: 35px;
+    background-color: transparent;
+    border: 2px solid #333333;
+    border-radius: 1px;
+    color:#333333; 
+    box-sizing: border-box;
+    transition: 0.3s;
+    box-shadow: 1px 1px
+}
+
+.removefromcartsubmit:hover {
+    background-color: #fdcc5b;
+    border: 2px solid black;
+    color: black;
+    box-shadow: 1px 1px black;
+} 
