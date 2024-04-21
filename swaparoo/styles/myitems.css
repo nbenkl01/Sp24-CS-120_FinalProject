@@ -112,3 +112,24 @@ h2 {
     font-style: italic;
     color: #7a7a7a
 }
+
+.addnewbook {
+    margin-top: 20px;
+    height: 45px;
+    width: 275px;
+    font-size: 30px;
+    background-color: transparent;
+    border: 2px solid #333333;
+    border-radius: 1px;
+    color:#333333; 
+    box-sizing: border-box;
+    transition: 0.3s;
+    box-shadow: 1px 1px
+}
+
+.addnewbook:hover {
+    background-color: #fdcc5b;
+    border: 2px solid black;
+    color: black;
+    box-shadow: 1px 1px black;
+} 
