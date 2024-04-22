@@ -7,15 +7,12 @@ if ($_POST['action'] == 'unlist') {
 } else {
     $new_availability = 1;
 }
-if ($stmt = $pdo->prepare('UPDATE Items SET available = ? WHERE item_id = ?;')) {
-    $password = password_hash($_POST['newpassword'], PASSWORD_DEFAULT);
-    $stmt->bindParam(1, $new_availability);
-    $stmt->bindParam(2, $_POST['item_id']);
-    $status = $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (!$status) {
-        echo '<script>alert("Could not upadte listing, please try again later!"); window.location.href = "index.php";</script>';
-    }
+$stmt = $pdo->prepare('UPDATE Items SET available = ? WHERE item_id = ?;');
+$stmt->bindParam(1, $new_availability);
+$stmt->bindParam(2, $_POST['item_id']);
+$status = $stmt->execute();
+if (!$status) {
+    echo '<script>alert("Could not update listing, please try again later!"); window.location.href = "index.php";</script>';
 }
 header("Location: /swaparoo/myitems/");
 ?>
