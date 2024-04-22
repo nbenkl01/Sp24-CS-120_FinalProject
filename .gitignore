@@ -1,0 +1,10 @@
+# Ignore directories
+node_modules/
+vendor/
+
+# Ignore sensitive files
+config.php
+
+# Ignore specific file formats
+*.log
+*.bak
