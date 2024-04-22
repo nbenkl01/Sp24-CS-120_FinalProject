@@ -42,7 +42,8 @@ if ($_POST['order_total'] > $_SESSION['credits_balance']) {
     if (!$status) {
         echo '<script>alert("Could not remove items from cart, please try again later!"); window.location.href = "index.php";</script>';
     }
+    $_SESSION['num_cart_items'] = 0;
 }
-header("Location: /swaparoo/cart/");
+header("Location: /swaparoo/cart/thankyou/?order_id=");
 ?>
 

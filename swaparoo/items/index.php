@@ -229,9 +229,9 @@ if (isset($_SERVER['QUERY_STRING'])) {
                         </div>    
                     </div>    
                 </a>
-                <form class="add-to-cart-form">
+                <form class="add-to-cart-form" action="/swaparoo/cart/addtocart.php" method="post">
                     <input type="hidden" name="item_id" value="<?=$item['item_id']?>">
-                    <input type="button" style = "float: right;" class="add-to-cart-btn" value="Put in Pouch">
+                    <input type="submit" style = "float: right;" class="add-to-cart-btn" value="Put in Pouch">
                 </form>
             </div>
         <?php endforeach; ?>

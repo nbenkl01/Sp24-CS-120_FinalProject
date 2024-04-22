@@ -29,16 +29,16 @@ function shared_header($title) {
 
     // Set default time zone.
     date_default_timezone_set('America/New_York');
-    $num_items_in_cart = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
+    // $num_items_in_cart = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
     if (!isset($_SESSION['loggedin'])) {
-        nonuser_header($title, $num_items_in_cart);
+        nonuser_header($title);
     }
     else{
-        user_header($title, $num_items_in_cart);
+        user_header($title);
     }
 }
 
-function user_header($title, $num_items_in_cart) {
+function user_header($title) {
     ?>
     <!DOCTYPE html>
 <html>
@@ -81,7 +81,7 @@ function user_header($title, $num_items_in_cart) {
                     </a>
                     <a href="/swaparoo/cart/">
                         <i class="fas fa-shopping-cart"></i>
-                        <span><?= $num_items_in_cart ?></span>
+                        <span><?=$_SESSION['num_cart_items']?></span>
                     </a>
                     <div class="headerbalance">
                         <i class="fas fa-coins"></i>
@@ -96,7 +96,7 @@ function user_header($title, $num_items_in_cart) {
 <?php
 }
 
-function nonuser_header($title, $num_items_in_cart) {
+function nonuser_header($title) {
     ?>
 <!DOCTYPE html>
 <html>
@@ -137,7 +137,7 @@ function nonuser_header($title, $num_items_in_cart) {
                     <!-- <a href="/swaparoo/signin/logout.php"><i class="fas fa-sign-out-alt"></i></a> -->
                     <a href="/swaparoo/cart/">
                         <i class="fas fa-shopping-cart"></i>
-                        <span><?= $num_items_in_cart ?></span>
+                        <!-- <span>0</span> -->
                     </a>
                 </div>
             </div>
