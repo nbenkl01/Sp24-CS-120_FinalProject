@@ -107,15 +107,239 @@ function showPopupMessage(message) {
     const messageBox = document.createElement('div');
     messageBox.textContent = message;
     messageBox.style.position = 'fixed';
-    messageBox.style.bottom = '20px';
-    messageBox.style.left = '20px';
+    messageBox.style.top = '50%';
+    messageBox.style.left = '50%';
+    messageBox.style.transform = 'translate(-50%, -50%)';
     messageBox.style.backgroundColor = 'lightgrey';
-    messageBox.style.padding = '10px';
+    messageBox.style.padding = '10px 20px';
     messageBox.style.borderRadius = '5px';
+    messageBox.style.zIndex = '1050'; // Ensure it's above other content
+    messageBox.style.textAlign = 'center'; // Center-align the text
+    messageBox.style.fontSize = '1.2rem'; // Optional: Enhance font size for better readability
+    messageBox.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)'; // Optional: Add shadow for better visibility
+
     document.body.appendChild(messageBox);
 
-    // message will disappear after 5 seconds
+    // Make the message disappear after 4 seconds
     setTimeout(() => {
         document.body.removeChild(messageBox);
-    }, 5000);
+    }, 4000);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const manualButton = document.querySelector('button[onclick="manualInput()"]');
+    manualButton.addEventListener('click', manualInput);
+    document.getElementById('manualCoverImage').addEventListener('change', checkFile);
+});
+
+document.getElementById('manualEntryForm').addEventListener('submit', function(event) {
+    if (!validateManualEntry()) {
+        event.preventDefault(); // Prevent form submission if validation fails
+    }
+});
+
+// Function to open manual input modal
+function manualInput() {
+    const manualInputModal = document.getElementById('manualInputModal');
+    
+    // Adding a cancel button if it does not exist
+    if (!document.getElementById('cancelManualInput')) {
+        const cancelButton = document.createElement('button');
+        cancelButton.textContent = 'Cancel';
+        cancelButton.id = 'cancelManualInput';
+        cancelButton.type = 'button';
+        cancelButton.onclick = closeModal; // Bind the closeModal function to the click event
+        manualInputModal.appendChild(cancelButton); // Append the cancel button to the modal
+    }
+    
+    manualInputModal.style.display = 'block';
+}
+
+// Function to validate manual entry form
+function validateManualEntry() {
+    let isValid = true;
+    const isbn = document.getElementById('manualISBN').value;
+    const creditValue = document.getElementById('manualCreditValue').value;
+    const bookTitle = document.getElementById('manualName').value;
+    const author = document.getElementById('manualAuthor').value;
+    const description = document.getElementById('manualDescription').value;
+    const condition = document.getElementById('manualCondition').value;
+    const coverImageFile = document.getElementById('manualCoverImage').files[0];
+
+    // Clear any previous error messages
+    clearErrorMessages();
+
+    // Check if all fields are filled
+    if (!bookTitle.trim() || !description.trim() || !author.trim() || !isbn.trim() || !creditValue.trim() || condition === '') {
+        showError('All fields must be filled and a condition selected.');
+        isValid = false;
+    }
+
+    // Check if a cover image is uploaded
+    if (!coverImageFile) {
+        showError('Cover image is required.');
+        isValid = false;
+    } else {
+        // Perform additional check on file type and size
+        if (!checkFile()) {
+            isValid = false;
+        }
+    }
+
+    // Validate ISBN (if it needs to be a specific format)
+    if (!/^\d{10}(\d{3})?$/.test(isbn)) { // Adjusted regex for ISBN-10 or ISBN-13
+        showError('ISBN must be 10 or 13 digits with no symbols');
+        isValid = false;
+    }
+
+    // Validate credit value
+    if (isNaN(creditValue) || parseInt(creditValue) <= 0) {
+        showError('Credit value must be greater than 0');
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+function checkFile() {
+    const fileInput = document.getElementById('manualCoverImage');
+    const file = fileInput.files[0];
+    
+    if (!file) {
+        showPopupMessage('No file selected. Please upload a book cover.');
+        return false;
+    }
+
+    if (file.type !== 'image/webp' || file.size > 70 * 1024) {
+        showPopupMessage('Please upload a .webp image with a size less than 70KB');
+        fileInput.value = '';
+        return false;
+    }
+
+    return true;
+}
+
+function showError(message) {
+    const errorDiv = document.getElementById('error-message');
+    if (errorDiv) {
+        errorDiv.textContent = message;
+        errorDiv.style.display = 'block'; // Make the error message visible
+    }
+}
+
+function clearErrorMessages() {
+    const errorDiv = document.getElementById('error-message');
+    if (errorDiv) {
+        errorDiv.style.display = 'none';
+    }
+}
+
+function submitManualEntry() {
+    if (!validateManualEntry()) {
+        return;
+    }
+
+    const coverImageFile = document.getElementById('manualCoverImage').files[0];
+    const formData = new FormData();
+    formData.append('coverImage', coverImageFile);
+
+    // upload the image first
+    fetch('uploadTmpPicture.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // after upload the image, complete the book submission using a local URL of the image
+            completeBookSubmission(data.url);
+        } else {
+            showPopupMessage(data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error uploading image:', error);
+        showPopupMessage('Error uploading image: ' + error.message);
+    });
+}
+
+function completeBookSubmission(imageUrl = '') {
+    const formData = new FormData(document.getElementById('manualEntryForm')); // grabs all input data
+    formData.append('thumbnail', imageUrl); // adding the thumbnail
+
+    // check if title needs to be added separately
+    if (!formData.has('title')) {
+        const title = document.getElementById('manualName').value;
+        formData.append('title', title);
+    }
+
+    // now send this data to addbook.php
+    fetch('addbook.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showPopupMessage('Book added successfully');
+            closeModal();
+        } else {
+            showPopupMessage(data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error adding book:', error);
+        showPopupMessage('Error adding book manually: ' + error.message);
+    });
+}
+
+// Function to close the modal and reset the form fields
+function closeModal() {
+    const manualInputModal = document.getElementById('manualInputModal');
+    const form = document.getElementById('manualEntryForm');
+
+    if (manualInputModal) {
+        manualInputModal.style.display = 'none';
+    }
+    // reset the form fields to their default values
+    if (form) {
+        form.reset();
+    }
+    // clear any existing error messages if they are visible
+    clearErrorMessages();
+}
+
+
+// Function to reset all form fields
+function resetFormFields() {
+    document.getElementById('manualEntryForm').reset();
+}
+
+function checkFile() {
+    const fileInput = document.getElementById('manualCoverImage');
+    const file = fileInput.files[0];
+    
+    if (!file) {
+        showPopupMessage('No file selected. Please upload a book cover.');
+        return false;
+    }
+
+    if (file.type !== 'image/webp' || file.size > 70 * 1024) {
+        showPopupMessage('Please upload a .webp image with a size less than 70KB');
+        fileInput.value = '';
+        return false;
+    }
+
+    booksData['coverImage'] = file;
+    return true;
+}
+
+function generateRandomString(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
 }

@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: application/json');
 session_start();
 include '../functions.php';
 // fixed path definition for image saving
@@ -38,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $stmt = $pdo->prepare("INSERT INTO Items (name, description, category, item_condition, owner_id, credit_value, title, author, isbn) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    // after saving the thumbnail successfully
     if ($stmt->execute([$name, $description, $category, $condition, $owner_id, $credit_value, $title, $author, $isbn])) {
         $item_id = $pdo->lastInsertId();
         $result = saveThumbnail($thumbnailUrl, $item_id, $imagesPath);
@@ -45,7 +47,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($result['error'])) {
             echo json_encode(["error" => $result['error']]);
         } else {
-            echo json_encode(["success" => "Book added successfully", "item_id" => $item_id, "image_info" => $result]);
+            echo json_encode(["success" => "Book added successfully", "item_id" => $item_id, "image_info" => $result, "thumbnail" => $thumbnailUrl]);
+
+            // cleanup thumbnail from temporary storage
+            if ($thumbnailUrl) {
+                if (file_exists($thumbnailUrl)) {
+                    unlink($thumbnailUrl); // Attempt to delete the file
+                } 
+                // else {
+                //     // Optional: log an error or send back a response if the file was not found
+                //     echo json_encode(["error" => "File not found for deletion: " . $thumbnailUrl]);
+                // }
+            }
         }
     } else {
         http_response_code(500);
