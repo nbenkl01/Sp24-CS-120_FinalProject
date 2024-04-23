@@ -39,28 +39,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $stmt = $pdo->prepare("INSERT INTO Items (name, description, category, item_condition, owner_id, credit_value, title, author, isbn) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    // after saving the thumbnail successfully
     if ($stmt->execute([$name, $description, $category, $condition, $owner_id, $credit_value, $title, $author, $isbn])) {
         $item_id = $pdo->lastInsertId();
         $result = saveThumbnail($thumbnailUrl, $item_id, $imagesPath);
-        
+
         if (isset($result['error'])) {
             echo json_encode(["error" => $result['error']]);
         } else {
-            echo json_encode(["success" => "Book added successfully", "item_id" => $item_id, "image_info" => $result]);
+            echo json_encode(["success" => "Book added successfully", "item_id" => $item_id, "image_info" => $result, "thumbnail" => $thumbnailUrl]);
 
-            // // Cleanup thumbnail from temporary storage if needed
-            // if ($thumbnailUrl && strpos($thumbnailUrl) !== false) {
-            //     // Construct the correct file path based on the relative location
-            //     $filePath = basename($thumbnailUrl);
-            //     if (file_exists($filePath)) {
-            //         unlink($filePath); // Attempt to delete the file
-            //     } else {
-            //         // Optional: Log an error or send back a response if the file was not found
-            //         echo json_encode(["error" => "File not found for deletion: " . $filePath]);
-            //     }
-            // }
+            // cleanup thumbnail from temporary storage
+            if ($thumbnailUrl) {
+                if (file_exists($thumbnailUrl)) {
+                    unlink($thumbnailUrl); // Attempt to delete the file
+                } 
+                // else {
+                //     // Optional: log an error or send back a response if the file was not found
+                //     echo json_encode(["error" => "File not found for deletion: " . $thumbnailUrl]);
+                // }
+            }
         }
-        
     } else {
         http_response_code(500);
         echo json_encode(["error" => "Failed to add book: " . implode(' ', $stmt->errorInfo())]);
