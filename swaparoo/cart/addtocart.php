@@ -1,11 +1,7 @@
 
 <?php session_start(); include '../functions.php'; ?>
 <?php $pdo = connect_mysql(); date_default_timezone_set('America/New_York'); ?>
-<?php if ($_SESSION['loggedin'] == FALSE) {
-    header("Location: /swaparoo/signin/");
-    exit();
-}
-?>
+<?php require_login('/swaparoo/items/items/?item=' . $_POST['item_id']); ?>
 
 <?php
 $stmt = $pdo->prepare('INSERT IGNORE INTO Cart (user_id, item_id) VALUES (?, ?);');

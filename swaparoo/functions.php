@@ -174,4 +174,13 @@ function shared_footer() {
 </html>
 <?php
 }
+
+// Redirect to a chosen page after logging in
+function require_login($previous_page) {
+    if ($_SESSION['loggedin'] == FALSE) {
+        $_SESSION['previous_page'] = $previous_page;
+        header("Location: /swaparoo/signin/");
+        exit();
+    }
+}
 ?>

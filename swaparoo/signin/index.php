@@ -2,7 +2,12 @@
 
 <?php 
 if (isset($_SESSION['loggedin'])) {
-    echo "<script>window.location.href = '/swaparoo/';</script>";
+    if (isset($_SESSION['previous_page'])) {
+        echo "<script>window.location.href = '" . $_SESSION['previous_page'] . "';</script>";
+        unset($_SESSION['previous_page']);
+    } else {
+        echo "<script>window.location.href = '/swaparoo/';</script>";
+    }
 }
 ?>
 

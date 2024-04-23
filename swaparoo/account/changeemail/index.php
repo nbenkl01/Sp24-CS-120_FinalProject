@@ -1,9 +1,6 @@
 <?php session_start(); include '../../functions.php'; include '/swaparoo/account/changeemail.php';shared_header('Change Email')?>
 <?php $pdo = connect_mysql(); date_default_timezone_set('America/New_York'); ?>
-<?php if ($_SESSION['loggedin'] == FALSE) {
-    header("Location: /swaparoo/signin/");
-}
-?>
+<?php require_login('/swaparoo/account/changeemail/'); ?>
 
 <div class = "changeemail">
     <h1>Change Email</h1>
