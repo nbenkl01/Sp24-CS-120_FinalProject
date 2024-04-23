@@ -7,7 +7,7 @@ shared_header('Add New Book Listing');
 
 <div class='container'>
     <h1>Add New Book Listing</h1>
-    <input type='text' id='bookName' placeholder="Enter the book's name" value="Harry Potter">
+    <input type='text' id='bookName' placeholder="Enter the book's name">
     <button onclick='searchBooks()'>Search</button>
     <button onclick='manualInput()'>Manual Input</button>
     <div id='searchResults'></div>
@@ -20,10 +20,10 @@ shared_header('Add New Book Listing');
         <h2>Manual Book Entry</h2>
         <div id="error-message" style="display: none; color: red; margin-bottom: 10px;"></div>
         <form id="manualEntryForm">
-            <input type='text' id='manualName' name='name' placeholder="Book Title" value="Harry Potter and the Cursed Child" required>
-            <textarea id='manualDescription' name='description' placeholder="Description">As an overworked employee of the Ministry of Magic, a husband, and a father, Harry Potter struggles with a past that refuses to stay where it belongs while his youngest son, Albus, finds the weight of the family legacy difficult to bear.</textarea>
-            <input type='text' id='manualAuthor' name='author' placeholder="Author" value="J. K. Rowling" required>
-            <input type='text' id='manualISBN' name='isbn' placeholder="ISBN" value="0751565369" required>
+            <input type='text' id='manualName' name='name' placeholder="Book Title" required>
+            <textarea id='manualDescription' name='description' placeholder="Description"></textarea>
+            <input type='text' id='manualAuthor' name='author' placeholder="Author" required>
+            <input type='text' id='manualISBN' name='isbn' placeholder="ISBN" required>
             <select id='manualCondition' name='condition' required>
                 <option value=''>Select Condition</option>
                 <option value='New'>New</option>
