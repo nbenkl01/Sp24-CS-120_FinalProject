@@ -1,9 +1,6 @@
 <?php session_start(); include '../functions.php'; include 'accountfunctions.php';shared_header('Account')?>
 <?php $pdo = connect_mysql(); date_default_timezone_set('America/New_York'); ?>
-<?php if ($_SESSION['loggedin'] == FALSE) {
-    header("Location: /swaparoo/signin/");
-}
-?>
+<?php require_login('/swaparoo/account/'); ?>
 
 <div class = "account">
     <h1>Profile</h1>

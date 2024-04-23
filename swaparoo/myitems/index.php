@@ -1,13 +1,6 @@
 <?php session_start(); include '../functions.php'; include 'myitemsfunctions.php';shared_header('My Items')?>
 <?php $pdo = connect_mysql(); date_default_timezone_set('America/New_York'); ?>
-<?php if ($_SESSION['loggedin'] == FALSE) {
-    header("Location: /swaparoo/signin/");
-}
-?>
-<?php
-
-?>
-
+<?php require_login('/swaparoo/myitems/'); ?>
 <!-- Lists items that are owned vs. listed - either as one or two tables -->
 <!-- Listed items have button to remove from listing -->
 <!-- Owned Items have button to list the item-->

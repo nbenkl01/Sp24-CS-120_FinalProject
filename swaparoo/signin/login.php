@@ -20,6 +20,14 @@ if ($stmt = $pdo->prepare('SELECT user_id, password, credits_balance FROM Users 
             $_SESSION['user_id'] = $result['user_id'];
             $_SESSION['credits_balance'] = $result['credits_balance'];
             // echo '<script>alert("Welcome back, ' . htmlspecialchars($_SESSION['name'], ENT_QUOTES) . '!"); window.location.href = "../";</script>';
+            
+            $pdo2 = connect_mysql();
+            $stmt2 = $pdo2->prepare('SELECT COUNT(item_id) AS num_cart_items FROM Cart WHERE user_id = ?;');
+            $stmt2->bindParam(1, $_SESSION['user_id']);
+            $stmt2->execute();
+            $result = $stmt2->fetch(PDO::FETCH_ASSOC);
+            $_SESSION['num_cart_items'] = $result['num_cart_items'];
+
             echo '"Welcome back, ' . htmlspecialchars($_SESSION['name'], ENT_QUOTES) . '!"';
         } else {
             // Incorrect password
@@ -34,4 +42,5 @@ if ($stmt = $pdo->prepare('SELECT user_id, password, credits_balance FROM Users 
 
     // $stmt->close();
 }
+
 ?>

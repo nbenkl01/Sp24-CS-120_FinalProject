@@ -189,7 +189,7 @@ $comments_info = $stmt->fetch(PDO::FETCH_ASSOC);
             <i class="fas fa-coins"></i>
             <?=$item['credit_value']?>
         </span>    
-        <form action="/swaparoo/cart/index.php" method="post">
+        <form action="/swaparoo/cart/addtocart.php" method="post">
             <input type="hidden" name="item_id" value="<?=$item['item_id']?>">
             <table>
                 <tr>
