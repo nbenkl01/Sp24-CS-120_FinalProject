@@ -30,6 +30,7 @@ function shared_header($title) {
     // Set default time zone.
     date_default_timezone_set('America/New_York');
     // $num_items_in_cart = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
+    add_to_cart_alerts();
     if (!isset($_SESSION['loggedin'])) {
         nonuser_header($title);
     }
@@ -203,6 +204,16 @@ function require_login($previous_page) {
         $_SESSION['previous_page'] = $previous_page;
         header("Location: /swaparoo/signin/");
         exit();
+    }
+}
+
+function add_to_cart_alerts() {
+    if(isset($_SESSION['item_already_owned_alert'])) {
+        echo '<script>alert("You already own that item!");</script>';
+        unset($_SESSION['item_already_owned_alert']);
+    } else if (isset($_SESSION['item_unavailable_alert'])) {
+        echo '<script>alert("This item is not available for swap.");</script>';
+        unset($_SESSION['item_unavailable_alert']);
     }
 }
 ?>
