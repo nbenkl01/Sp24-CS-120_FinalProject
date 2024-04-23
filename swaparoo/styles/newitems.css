@@ -157,10 +157,27 @@ button[type="submit"]:hover {
 
 .modal-content {
     background-color: #fefefe;
-    margin: 20% auto;
-    padding: 40px;
+    margin: 5% auto;
+    padding: 20px;
     border: 1px solid #888;
     width: 38%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+.button-container button {
+    flex-grow: 1;
+    margin: 0 5px;
 }
 
 .close {

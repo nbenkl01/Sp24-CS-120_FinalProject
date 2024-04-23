@@ -120,10 +120,10 @@ function showPopupMessage(message) {
 
     document.body.appendChild(messageBox);
 
-    // Make the message disappear after 5 seconds
+    // Make the message disappear after 4 seconds
     setTimeout(() => {
         document.body.removeChild(messageBox);
-    }, 5000);
+    }, 4000);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -158,19 +158,32 @@ function manualInput() {
 // Function to validate manual entry form
 function validateManualEntry() {
     let isValid = true;
-    const isbn = document.getElementById('manualISBN').value; // Correct ID for ISBN
-    const creditValue = document.getElementById('manualCreditValue').value; // Correct ID for Credit Value
-    const bookTitle = document.getElementById('manualName').value; // Correct ID for Book Title
-    const author = document.getElementById('manualAuthor').value; // Correct ID for Author
-    const description = document.getElementById('manualDescription').value; // Correct ID for Description
+    const isbn = document.getElementById('manualISBN').value;
+    const creditValue = document.getElementById('manualCreditValue').value;
+    const bookTitle = document.getElementById('manualName').value;
+    const author = document.getElementById('manualAuthor').value;
+    const description = document.getElementById('manualDescription').value;
+    const condition = document.getElementById('manualCondition').value;
+    const coverImageFile = document.getElementById('manualCoverImage').files[0];
 
     // Clear any previous error messages
     clearErrorMessages();
 
     // Check if all fields are filled
-    if (!bookTitle.trim() || !description.trim() || !author.trim() || !isbn.trim() || !creditValue.trim()) {
-        showError('All fields must be filled');
+    if (!bookTitle.trim() || !description.trim() || !author.trim() || !isbn.trim() || !creditValue.trim() || condition === '') {
+        showError('All fields must be filled and a condition selected.');
         isValid = false;
+    }
+
+    // Check if a cover image is uploaded
+    if (!coverImageFile) {
+        showError('Cover image is required.');
+        isValid = false;
+    } else {
+        // Perform additional check on file type and size
+        if (!checkFile()) {
+            isValid = false;
+        }
     }
 
     // Validate ISBN (if it needs to be a specific format)
@@ -188,6 +201,24 @@ function validateManualEntry() {
     return isValid;
 }
 
+function checkFile() {
+    const fileInput = document.getElementById('manualCoverImage');
+    const file = fileInput.files[0];
+    
+    if (!file) {
+        showPopupMessage('No file selected. Please upload a book cover.');
+        return false;
+    }
+
+    if (file.type !== 'image/webp' || file.size > 70 * 1024) {
+        showPopupMessage('Please upload a .webp image with a size less than 70KB');
+        fileInput.value = '';
+        return false;
+    }
+
+    return true;
+}
+
 function showError(message) {
     const errorDiv = document.getElementById('error-message');
     if (errorDiv) {
@@ -199,7 +230,7 @@ function showError(message) {
 function clearErrorMessages() {
     const errorDiv = document.getElementById('error-message');
     if (errorDiv) {
-        errorDiv.style.display = 'none'; // Hide the error message
+        errorDiv.style.display = 'none';
     }
 }
 
@@ -209,46 +240,40 @@ function submitManualEntry() {
     }
 
     const coverImageFile = document.getElementById('manualCoverImage').files[0];
-    if (coverImageFile) {
-        const formData = new FormData();
-        formData.append('coverImage', coverImageFile);
+    const formData = new FormData();
+    formData.append('coverImage', coverImageFile);
 
-        // upload the image first
-        fetch('uploadTmpPicture.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // continue with submitting the rest of the form
-                completeBookSubmission(data.url);
-            } else {
-                showPopupMessage(data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error uploading image:', error);
-            showPopupMessage('Error uploading image: ' + error.message);
-        });
-    } else {
-        // No image file selected, proceed without image URL
-        // this need to be changed, no picture no upload
-        completeBookSubmission();
-    }
+    // upload the image first
+    fetch('uploadTmpPicture.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // after upload the image, complete the book submission using a local URL of the image
+            completeBookSubmission(data.url);
+        } else {
+            showPopupMessage(data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error uploading image:', error);
+        showPopupMessage('Error uploading image: ' + error.message);
+    });
 }
 
 function completeBookSubmission(imageUrl = '') {
-    const formData = new FormData(document.getElementById('manualEntryForm')); // This grabs all input data
-    formData.append('thumbnail', imageUrl); // Adding the thumbnail
+    const formData = new FormData(document.getElementById('manualEntryForm')); // grabs all input data
+    formData.append('thumbnail', imageUrl); // adding the thumbnail
 
     // check if title needs to be added separately
     if (!formData.has('title')) {
-        const title = document.getElementById('manualName').value; // Assuming 'manualName' is your title input
+        const title = document.getElementById('manualName').value;
         formData.append('title', title);
     }
 
-    // Now send this data to addbook.php
+    // now send this data to addbook.php
     fetch('addbook.php', {
         method: 'POST',
         body: formData
@@ -258,7 +283,6 @@ function completeBookSubmission(imageUrl = '') {
         if (data.success) {
             showPopupMessage('Book added successfully');
             closeModal();
-            // resetFormFields();  // Call this function to clear all input fields
         } else {
             showPopupMessage(data.error);
         }
@@ -269,10 +293,22 @@ function completeBookSubmission(imageUrl = '') {
     });
 }
 
-// Function to close the modal
+// Function to close the modal and reset the form fields
 function closeModal() {
-    document.getElementById('manualInputModal').style.display = 'none';
+    const manualInputModal = document.getElementById('manualInputModal');
+    const form = document.getElementById('manualEntryForm');
+
+    if (manualInputModal) {
+        manualInputModal.style.display = 'none';
+    }
+    // reset the form fields to their default values
+    if (form) {
+        form.reset();
+    }
+    // clear any existing error messages if they are visible
+    clearErrorMessages();
 }
+
 
 // Function to reset all form fields
 function resetFormFields() {

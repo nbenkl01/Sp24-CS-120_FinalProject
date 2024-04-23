@@ -21,7 +21,7 @@ shared_header('Add New Book Listing');
         <div id="error-message" style="display: none; color: red; margin-bottom: 10px;"></div>
         <form id="manualEntryForm">
             <input type='text' id='manualName' name='name' placeholder="Book Title" value="Harry Potter and the Cursed Child" required>
-            <textarea id='manualDescription' name='description' placeholder="Description" value="As an overworked employee of the Ministry of Magic, a husband, and a father, Harry Potter struggles with a past that refuses to stay where it belongs while his youngest son, Albus, finds the weight of the family legacy difficult to bear." ></textarea>
+            <textarea id='manualDescription' name='description' placeholder="Description">As an overworked employee of the Ministry of Magic, a husband, and a father, Harry Potter struggles with a past that refuses to stay where it belongs while his youngest son, Albus, finds the weight of the family legacy difficult to bear.</textarea>
             <input type='text' id='manualAuthor' name='author' placeholder="Author" value="J. K. Rowling" required>
             <input type='text' id='manualISBN' name='isbn' placeholder="ISBN" value="0751565369" required>
             <select id='manualCondition' name='condition' required>
@@ -32,12 +32,13 @@ shared_header('Add New Book Listing');
             <input type='number' id='manualCreditValue' name='credit_value' placeholder="Credit Value" min='1' required>
             <label for='manualCoverImage'>Upload Book Cover (Max 70KB, .webp format):</label>
             <input type='file' id='manualCoverImage' name='coverImage' accept=".webp" onchange="checkFile()">
-            <button type='button' id="manualSubmitButton" onclick='submitManualEntry()'>Add the book!</button>
-            <button type='button' id='cancelManualInput' class='cancel-button' onclick='closeModal()'>Cancel</button>
+            <div class="button-container">
+                <button type='button' id="manualSubmitButton" onclick='submitManualEntry()'>Add the book!</button>
+                <button type='button' id='cancelManualInput' class='cancel-button' onclick='closeModal()'>Cancel</button>
+            </div>
         </form>
     </div>
 </div>
-
 
 <script src="newlisting.js"></script>
 
