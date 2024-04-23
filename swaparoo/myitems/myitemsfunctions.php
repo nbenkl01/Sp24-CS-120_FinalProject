@@ -38,7 +38,6 @@ function listed_items_rows() {
                 }
 
             } else {
-                // $rowclass = "entryrowpending";
                 $rowclass = "";
                 $cellclass = "entrycellpending";
                 $titletextclass = "titletextpending";

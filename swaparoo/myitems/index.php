@@ -1,12 +1,6 @@
 <?php session_start(); include '../functions.php'; include 'myitemsfunctions.php';shared_header('My Items')?>
 <?php $pdo = connect_mysql(); date_default_timezone_set('America/New_York'); ?>
 <?php require_login('/swaparoo/myitems/'); ?>
-<!-- Lists items that are owned vs. listed - either as one or two tables -->
-<!-- Listed items have button to remove from listing -->
-<!-- Owned Items have button to list the item-->
-
-<!-- Listed Items: Image, Title/author, Condition, Status(Available for Swap/Sale Pending), Price, Remove Listing Button -->
-<!-- Owned Items: Image, Title/author, Condition (with edit button?), Credit Value, Add to listing  -->
 
 <div class = "myitems">
 <h1>My Items</h1>

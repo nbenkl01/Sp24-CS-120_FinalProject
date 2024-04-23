@@ -13,14 +13,6 @@ function connect_mysql() {
     }
 }
 
-function check_login() {
-    // If the user is not logged in redirect to the login page...
-    if (!isset($_SESSION['loggedin'])) {
-        header('Location: signin/');
-        exit;
-    }
-}
-
 // Standard header
 function shared_header($title) {
     
@@ -29,7 +21,6 @@ function shared_header($title) {
 
     // Set default time zone.
     date_default_timezone_set('America/New_York');
-    // $num_items_in_cart = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
     add_to_cart_alerts();
     if (!isset($_SESSION['loggedin'])) {
         nonuser_header($title);
@@ -83,7 +74,6 @@ function user_header($title) {
                     <a href="/swaparoo/">Home</a>
                     <a href="/swaparoo/items/">The Swap Shop</a>
                     <a href="/swaparoo/myitems/">My Items</a>
-                    <!-- <a href="/swaparoo/signin/register/">Register</a> -->
                 </nav>
                 <div class="link-icons">
                     <a href="/swaparoo/account/" class="accountlink">
@@ -137,7 +127,6 @@ function nonuser_header($title) {
                     </a>
                 </h1>
                 <nav>
-                    <!-- <a href="/swaparoo/">Home</a> -->
                     <a href="/swaparoo/items/">The Swap Shop</a>
                     <span><a href="/swaparoo/signin/">Login</a>/
                     <a href="/swaparoo/signin/register/">Register</a></span>
@@ -149,10 +138,8 @@ function nonuser_header($title) {
                     <a href="/swaparoo/signin/">
                         <i class="fas fa-user-circle"></i>
                     </a>
-                    <!-- <a href="/swaparoo/signin/logout.php"><i class="fas fa-sign-out-alt"></i></a> -->
                     <a href="/swaparoo/cart/">
                         <i class="fas fa-shopping-cart"></i>
-                        <!-- <span>0</span> -->
                     </a>
                 </div>
             </div>

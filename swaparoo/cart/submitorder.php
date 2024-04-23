@@ -8,7 +8,6 @@ if ($_POST['order_total'] > $_SESSION['credits_balance']) {
     
 } else {
     // Get All Items in cart
-    // $pdo1 = connect_mysql();
     $user_id = $_SESSION['user_id'];
     $stmt_get_cart = $pdo->prepare('SELECT c.item_id, i.owner_id, i.credit_value FROM Cart AS c, Items AS i WHERE i.item_id = c.item_id AND user_id = ?;');
     $stmt_get_cart->bindParam(1, $user_id);
