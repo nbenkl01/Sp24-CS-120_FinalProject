@@ -31,7 +31,7 @@
         <?php listed_items_rows() ?>
         </table>
     </div>
-    <form method="post" action="/swaparoo/addnewbook/">
+    <form method="post" action="newlisting.php">
         <input type="submit" value="Add New Book" class="addnewbook">
     </form>
     <h2 class="ownedh2" >Owned Items</h2>
