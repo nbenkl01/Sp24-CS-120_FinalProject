@@ -144,3 +144,34 @@
     box-shadow: 1px 1px black;
     background-position: -100% 0%;
 } 
+.orderconfirmation{
+    margin-left: 15%;
+}
+
+.orderconfirmation div {
+    color: #333333;
+    font-size: 20px;
+    margin: 5px 0px;
+}
+
+.orderconfirmation i {
+    color: #c5ad41;
+}
+
+.shipdate {
+    font-weight: bold;
+}
+
+.shipdate, .shiptext {
+    display: inline;
+}
+
+.emptycart {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.emptycart, .emptycart a {
+    color: #333333;
+    font-size: 30px;
+}

@@ -54,6 +54,20 @@ function user_header($title) {
         <link href="/swaparoo/styles/cart.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     </head>
+    <?php if (isset($_SESSION['wigglecart'])) { ?>
+    <script>     
+    window.onload = function() {
+        cartElement = document.getElementById("carticon");
+        cartElement.classList.add("wiggle");
+
+        // Remove wiggle class after animation completes
+        // Must match length of css animation
+        setTimeout(function() {
+            cartElement.classList.remove("wiggle");
+        }, 1000);
+    }
+    </script>
+    <?php unset($_SESSION['wigglecart']); }?>
     <body>
         <header>
             <div class="content-wrapper">
@@ -79,7 +93,7 @@ function user_header($title) {
                     <a href="/swaparoo/search/">
                         <i class="fas fa-search"></i>
                     </a>
-                    <a href="/swaparoo/cart/">
+                    <a href="/swaparoo/cart/" id="carticon">
                         <i class="fas fa-shopping-cart"></i>
                         <span><?=$_SESSION['num_cart_items']?></span>
                     </a>
