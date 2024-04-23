@@ -5,9 +5,14 @@
 }
 ?>
 
+
 <div class = "cart">
     <h1>My Pouch</h1>
     <?php 
+    if (isset($_SESSION['insufficient_funds'])) {
+        echo '<script>alert("You do not have sufficient funds to make this purchase.");</script>';
+        unset($_SESSION['insufficient_funds']);
+    }
     $pdo = connect_mysql();
     $user_id = $_SESSION['user_id'];
 

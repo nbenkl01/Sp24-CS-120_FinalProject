@@ -3,7 +3,9 @@
 
 <?php 
 if ($_POST['order_total'] > $_SESSION['credits_balance']) {
-    echo '<script>alert("You do not have sufficient funds to make this purchase."); window.location.href = "/swaparoo/cart/";</script>';
+    $_SESSION['insufficient_funds'] = TRUE;
+    header("Location: /swaparoo/cart/");
+    
 } else {
     // Get All Items in cart
     // $pdo1 = connect_mysql();
@@ -16,13 +18,18 @@ if ($_POST['order_total'] > $_SESSION['credits_balance']) {
     $results = $stmt_get_cart->fetchAll(PDO::FETCH_ASSOC);
     foreach($results as $row) {
         // Add each item to transaction history and update owner in items table
-        $stmt_each = $pdo_each->prepare('INSERT INTO Transactions (transaction_id, buyer_id, seller_id, item_id, transaction_timestamp, status, price) VALUES (NULL, ?, ?, ?, NOW(), "Pending", ?); UPDATE Items SET owner_id = ? WHERE item_id = ?;');
+        $stmt_each = $pdo_each->prepare('INSERT INTO Transactions (transaction_id, buyer_id, seller_id, item_id, transaction_timestamp, status, price) VALUES (NULL, ?, ?, ?, NOW(), "Pending", ?); UPDATE Items SET owner_id = ? WHERE item_id = ?; UPDATE Users SET credits_balance = credits_balance + ? WHERE user_id = ?;');
+        // Add Item to transaction history
         $stmt_each->bindParam(1, $user_id);
         $stmt_each->bindParam(2, $row['owner_id']);
         $stmt_each->bindParam(3, $row['item_id']);
         $stmt_each->bindParam(4, $row['credit_value']);
+        // Change Item Owner
         $stmt_each->bindParam(5, $user_id);
         $stmt_each->bindParam(6, $row['item_id']);
+        // Increment Sellers Credit Balance
+        $stmt_each->bindParam(7, $row['credit_value']);
+        $stmt_each->bindParam(8, $row['owner_id']);
         $status = $stmt_each->execute();
         if (!$status) {
             echo '<script>alert("Could not update transaction history, please try again later!"); window.location.href = "index.php";</script>';
@@ -44,10 +51,10 @@ if ($_POST['order_total'] > $_SESSION['credits_balance']) {
     }
     $_SESSION['num_cart_items'] = 0;
     $_SESSION['wigglecart'] = TRUE;
+    header("Location: /swaparoo/cart/thankyou/?" . http_build_query(
+        array(
+            'order_total' => $_POST['order_total']
+        )));
 }
-header("Location: /swaparoo/cart/thankyou/?" . http_build_query(
-    array(
-        'order_total' => $_POST['order_total']
-    )));
 ?>
 
