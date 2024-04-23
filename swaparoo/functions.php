@@ -44,6 +44,7 @@ function user_header($title) {
         <link href="/swaparoo/styles/myitems.css" rel="stylesheet" type="text/css">
         <link href="/swaparoo/styles/items.css" rel="stylesheet" type="text/css">
         <link href="/swaparoo/styles/cart.css" rel="stylesheet" type="text/css">
+        <link href="/swaparoo/styles/contact.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     </head>
     <?php if (isset($_SESSION['wigglecart'])) { ?>
@@ -81,9 +82,9 @@ function user_header($title) {
                         <i class="fas fa-user-circle"></i>
                     </a>
                     <a href="/swaparoo/signin/logout.php"><i class="fas fa-sign-out-alt"></i></a>
-                    <a href="/swaparoo/search/">
+                    <!-- <a href="/swaparoo/search/">
                         <i class="fas fa-search"></i>
-                    </a>
+                    </a> -->
                     <a href="/swaparoo/cart/" id="carticon">
                         <i class="fas fa-shopping-cart"></i>
                         <span><?=$_SESSION['num_cart_items']?></span>
@@ -114,6 +115,7 @@ function nonuser_header($title) {
         <link href="/swaparoo/styles/account.css" rel="stylesheet" type="text/css">
         <link href="/swaparoo/styles/items.css" rel="stylesheet" type="text/css">
         <link href="/swaparoo/styles/cart.css" rel="stylesheet" type="text/css">
+        <link href="/swaparoo/styles/contact.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     </head>
     <body>
@@ -132,9 +134,9 @@ function nonuser_header($title) {
                     <a href="/swaparoo/signin/register/">Register</a></span>
                 </nav>
                 <div class="link-icons">
-                    <a href="/swaparoo/search/">
+                    <!-- <a href="/swaparoo/search/">
                         <i class="fas fa-search"></i>
-                    </a>
+                    </a> -->
                     <a href="/swaparoo/signin/">
                         <i class="fas fa-user-circle"></i>
                     </a>
@@ -155,7 +157,9 @@ function shared_footer() {
         </main>
         <footer>
             <div class="content-wrapper">
-                <p>&copy; <?= $year ?>, Eccentric Emporiums Inc.</p>
+                <p>&copy; <?= $year ?>, Eccentric Emporiums Inc.
+                <a href="/swaparoo/contact/"><i class="fas fa-address-book"></i> Contact Us</a>
+                </p>
             </div>
         </footer>
     </body>

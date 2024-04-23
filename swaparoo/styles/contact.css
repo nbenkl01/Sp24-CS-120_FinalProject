@@ -1,0 +1,94 @@
+/* 
+.contact html {
+    background-color: #F8F9F9;
+    padding: 30px;
+} */
+
+.contact input,
+.contact textarea,
+.contact p {
+    outline: 0;
+}
+
+.contact h1 {
+    margin: 0;
+    padding: 20px;
+    font-size: 22px;
+    text-align: center;
+    border-bottom: 1px solid #eceff2;
+    color: #6a737f;
+    font-weight: 600;
+}
+
+.contact {
+    background-color: #fff;
+    width: 500px;
+    margin: 100px auto;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,.2);
+}
+.contact .fields {
+    position: relative;
+    padding: 15px;
+}
+.contact input[type="text"], .contact input[type="email"] {
+    display: block;
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid #dfe0e0;
+    width: 100%;
+}
+.contact input[type="text"]:focus, .contact input[type="email"]:focus {
+    border: 1px solid #c6c7c7;
+}
+.contact input[type="text"]::placeholder, 
+.contact input[type="email"]::placeholder, 
+.contact textarea::placeholder {
+    color: #858688;
+}
+.contact textarea {
+    resize: none;
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid #dfe0e0;
+    width: 100%;
+    height: 150px;
+}
+.contact textarea:focus {
+    border: 1px solid #c6c7c7;
+}
+.contact input[type="submit"] {
+    display: block;
+    margin-top: 15px;
+    padding: 15px;
+    border: 0;
+    background-color: #518acb;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+}
+.contact input[type="submit"]:hover {
+    background-color: #3670b3;
+}
+.contact input[name="email"] {
+    position: relative;
+    display: block;
+}
+.contact label {
+    position: relative;
+
+}
+.contact label i {
+    position: absolute;
+    color: #dfe2e5;
+    top: 31px;
+    left: 15px;
+    z-index: 10;
+}
+.contact label i ~ input {
+    padding-left: 45px !important;
+}
+.contact .responses {
+    padding: 15px;
+    margin: 0;
+}
