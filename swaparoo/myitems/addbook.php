@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: application/json');
 session_start();
 include '../functions.php';
 // fixed path definition for image saving
@@ -41,12 +42,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($stmt->execute([$name, $description, $category, $condition, $owner_id, $credit_value, $title, $author, $isbn])) {
         $item_id = $pdo->lastInsertId();
         $result = saveThumbnail($thumbnailUrl, $item_id, $imagesPath);
-
+        
         if (isset($result['error'])) {
             echo json_encode(["error" => $result['error']]);
         } else {
             echo json_encode(["success" => "Book added successfully", "item_id" => $item_id, "image_info" => $result]);
+
+            // // Cleanup thumbnail from temporary storage if needed
+            // if ($thumbnailUrl && strpos($thumbnailUrl) !== false) {
+            //     // Construct the correct file path based on the relative location
+            //     $filePath = basename($thumbnailUrl);
+            //     if (file_exists($filePath)) {
+            //         unlink($filePath); // Attempt to delete the file
+            //     } else {
+            //         // Optional: Log an error or send back a response if the file was not found
+            //         echo json_encode(["error" => "File not found for deletion: " . $filePath]);
+            //     }
+            // }
         }
+        
     } else {
         http_response_code(500);
         echo json_encode(["error" => "Failed to add book: " . implode(' ', $stmt->errorInfo())]);
