@@ -113,10 +113,10 @@ function showPopupMessage(message) {
     messageBox.style.backgroundColor = 'lightgrey';
     messageBox.style.padding = '10px 20px';
     messageBox.style.borderRadius = '5px';
-    messageBox.style.zIndex = '1050'; // Ensure it's above other content
-    messageBox.style.textAlign = 'center'; // Center-align the text
-    messageBox.style.fontSize = '1.2rem'; // Optional: Enhance font size for better readability
-    messageBox.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)'; // Optional: Add shadow for better visibility
+    messageBox.style.zIndex = '1050';
+    messageBox.style.textAlign = 'center';
+    messageBox.style.fontSize = '1.2rem';
+    messageBox.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
 
     document.body.appendChild(messageBox);
 
@@ -142,20 +142,20 @@ document.getElementById('manualEntryForm').addEventListener('submit', function(e
 function manualInput() {
     const manualInputModal = document.getElementById('manualInputModal');
     
-    // Adding a cancel button if it does not exist
+    // adding a cancel button if it does not exist
     if (!document.getElementById('cancelManualInput')) {
         const cancelButton = document.createElement('button');
         cancelButton.textContent = 'Cancel';
         cancelButton.id = 'cancelManualInput';
         cancelButton.type = 'button';
-        cancelButton.onclick = closeModal; // Bind the closeModal function to the click event
-        manualInputModal.appendChild(cancelButton); // Append the cancel button to the modal
+        cancelButton.onclick = closeModal;
+        manualInputModal.appendChild(cancelButton);
     }
     
     manualInputModal.style.display = 'block';
 }
 
-// Function to validate manual entry form
+// function to validate manual entry form
 function validateManualEntry() {
     let isValid = true;
     const isbn = document.getElementById('manualISBN').value;
@@ -166,33 +166,31 @@ function validateManualEntry() {
     const condition = document.getElementById('manualCondition').value;
     const coverImageFile = document.getElementById('manualCoverImage').files[0];
 
-    // Clear any previous error messages
     clearErrorMessages();
 
-    // Check if all fields are filled
+    // check if all fields are filled
     if (!bookTitle.trim() || !description.trim() || !author.trim() || !isbn.trim() || !creditValue.trim() || condition === '') {
         showError('All fields must be filled and a condition selected.');
         isValid = false;
     }
 
-    // Check if a cover image is uploaded
+    // check if a cover image is uploaded
     if (!coverImageFile) {
         showError('Cover image is required.');
         isValid = false;
     } else {
-        // Perform additional check on file type and size
+        // perform additional check on file type and size
         if (!checkFile()) {
             isValid = false;
         }
     }
 
-    // Validate ISBN (if it needs to be a specific format)
+    // validate ISBN (if it needs to be a specific format)
     if (!/^\d{10}(\d{3})?$/.test(isbn)) { // Adjusted regex for ISBN-10 or ISBN-13
         showError('ISBN must be 10 or 13 digits with no symbols');
         isValid = false;
     }
 
-    // Validate credit value
     if (isNaN(creditValue) || parseInt(creditValue) <= 0) {
         showError('Credit value must be greater than 0');
         isValid = false;
@@ -310,7 +308,7 @@ function closeModal() {
 }
 
 
-// Function to reset all form fields
+// function to reset all form fields
 function resetFormFields() {
     document.getElementById('manualEntryForm').reset();
 }
