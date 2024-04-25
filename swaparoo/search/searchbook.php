@@ -8,7 +8,7 @@ $pdo = connect_mysql();
 $category = $_GET['category'] ?? '';
 $keywords = $_GET['keywords'] ?? '';
 
-// Prepare the search query based on the category
+// prepare the search query based on the category user wants to search
 switch ($category) {
     case 'title':
         $searchField = "title";

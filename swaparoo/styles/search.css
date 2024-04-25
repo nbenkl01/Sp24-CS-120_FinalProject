@@ -1,0 +1,151 @@
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.book-result {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+.book-result:hover {
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
+
+.book-result img {
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.book-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.book-link:hover {
+    text-decoration: none;
+}
+
+.book-result h3, .book-result p {
+    margin: 5px 0;
+    text-align: center;
+}
+
+.book-info {
+    width: 100%;
+    text-align: center;
+}
+
+.book-actions {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+}
+
+.book-actions button {
+    padding: 8px 16px;
+    margin: 0 5px;
+    background-color: #5C67F2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8em;
+}
+
+.book-actions button:hover {
+    background-color: #5058E5;
+}
+
+#search-results {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 15px;
+    margin-top: 15px;
+}
+
+.search-filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.search-filters label {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+#filter-results {
+    padding: 8px 15px;
+    background-color: #5C67F2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+#filter-results:hover {
+    background-color: #5058E5;
+}
+
+.radio-group {
+    margin-bottom: 15px;
+}
+
+.radio-group label {
+    margin-right: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 4px;
+}
+
+.error {
+    color: red;
+    font-size: 0.9rem;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 1024px) {
+    #search-results {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    #search-results {
+        grid-template-columns: 1fr;
+    }
+    
+    .search-filters {
+        flex-direction: column;
+    }
+}

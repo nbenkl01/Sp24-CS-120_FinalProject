@@ -25,6 +25,12 @@ shared_header('Book Search');
         <input type="text" name="keywords" placeholder="Enter search keywords" value="1984" required>
         <input type="submit" value="Search">
     </form>
+    <div class="search-filters">
+        <label><input type="radio" name="condition" value="all" checked> All</label>
+        <label><input type="radio" name="condition" value="new"> New</label>
+        <label><input type="radio" name="condition" value="used"> Used</label>
+        <button type="button" id="filter-results">Filter</button>
+    </div>
     <div id="search-results"></div>
 </div>
 
