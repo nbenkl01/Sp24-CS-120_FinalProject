@@ -134,9 +134,9 @@ function nonuser_header($title) {
                     <a href="/swaparoo/signin/register/">Register</a></span>
                 </nav>
                 <div class="link-icons">
-                    <!-- <a href="/swaparoo/search/">
+                    <a href="/swaparoo/search/">
                         <i class="fas fa-search"></i>
-                    </a> -->
+                    </a>
                     <a href="/swaparoo/signin/">
                         <i class="fas fa-user-circle"></i>
                     </a>
