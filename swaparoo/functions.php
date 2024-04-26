@@ -35,7 +35,7 @@ function user_header($title) {
     <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
         <title><?= $title ?></title>
         <link rel="icon" href="/images/transparent_logo.png">
         <link href="/swaparoo/styles/style.css" rel="stylesheet" type="text/css">
@@ -62,7 +62,14 @@ function user_header($title) {
     </script>
     <?php unset($_SESSION['wigglecart']); }?>
     <body>
-        <header>
+        <header class = "userheader">
+            <div class = small_device_name>
+                <a href="/swaparoo/">
+                    <i class="fas fa-tents"></i>
+                    Swap-a-Roo
+                    <i class="fas fa-person-circle-question"></i>
+                </a>
+            </div>
             <div class="content-wrapper">
                 <h1>
                     <a href="/swaparoo/">
@@ -107,7 +114,7 @@ function nonuser_header($title) {
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
         <title><?= $title ?></title>
         <link rel="icon" href="/images/transparent_logo.png">
         <link href="/swaparoo/styles/style.css" rel="stylesheet" type="text/css">
@@ -119,7 +126,14 @@ function nonuser_header($title) {
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     </head>
     <body>
-        <header>
+        <header class = "nonuserheader">
+            <div class = small_device_name>
+                <a href="/swaparoo/">
+                    <i class="fas fa-tents"></i>
+                    Swap-a-Roo
+                    <i class="fas fa-person-circle-question"></i>
+                </a>
+            </div>
             <div class="content-wrapper">
                 <h1>
                     <a href="/swaparoo/">

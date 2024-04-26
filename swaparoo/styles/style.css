@@ -30,6 +30,10 @@ h1, h2, h3, h4, h5 {
     width: 70%;
 }
 
+.small_device_name {
+    display: none;
+}
+
 header {
 	color:  #f1e9df!important;
 	background-color: #1e1e1e;
@@ -37,11 +41,11 @@ header {
 }
 
 header .content-wrapper {
-	display: flex;
+    display: flex;
 }
 
 header h1 {
-	display: flex;
+    display: flex;
 	flex-grow: 1;
 	flex-basis: 0;
 	font-size: 20px;
@@ -49,6 +53,7 @@ header h1 {
 	padding: 24px 0;
     justify-content: center;
 }
+
 
 header h1 a {
 	text-decoration: none;
@@ -245,4 +250,60 @@ footer a:hover {
 
 .wiggle {
     animation: wiggle 1s ease;
+}
+
+@media screen and (max-width: 1100px) {
+    header h1, header h1 a {
+        display: none;
+    }
+
+    header .link-icons {
+        align-items:center;
+         justify-content: center;
+    }
+
+    header .link-icons {
+        flex-grow: .8;
+    }
+
+    .content-wrapper  {
+        min-width: 600px;
+        width: 100%;
+        padding-bottom: 5px;
+    }
+
+    .link-icons a div {
+        display: none;
+    }
+
+    .small_device_name {
+        display:block;
+        font-size: 20px;
+        margin: 0;
+        padding-top: 10px;
+        text-align: center;
+        width: 100%;
+        font-weight: 700;
+    }
+    
+    .small_device_name a {
+        text-decoration: none;
+        color:  #f1e9df!important;
+        font-size: 20px;
+        margin: 0;
+    }
+
+    .nonuserheader nav {
+        flex-grow: 2;
+    }
+
+    .nonuserheader nav > a, .nonuserheader nav span {
+        margin: 0 10%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    header nav a {
+        padding: 10px 5px;
+    }
 }

@@ -1,5 +1,6 @@
 .cartitemcontainer {
     width: 60%;
+    min-width: 1000px;
     height: fit-content;
     border: 1px solid black;
     margin: 40px auto;
