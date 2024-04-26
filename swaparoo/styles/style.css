@@ -300,6 +300,10 @@ footer a:hover {
     .nonuserheader nav > a, .nonuserheader nav span {
         margin: 0 10%;
     }
+
+    footer p {
+        margin: 0 35px;
+    }
 }
 
 @media screen and (max-width: 650px) {
