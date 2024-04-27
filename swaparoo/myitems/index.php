@@ -12,7 +12,7 @@
                 <th class="entryheadercell">Title</th>
                 <th class="entryheadercell">Condition</th>
                 <th class="entryheadercell">Status</th>
-                <th class="entryheadercell">Credit Value</th>
+                <th class="entryheadercell">Value</th>
                 <th class="entryheadercell"></th>
             </tr>
         <?php listed_items_rows() ?>
@@ -28,7 +28,7 @@
                 <th class="entryheadercell"></th>
                 <th class="entryheadercell">Title</th>
                 <th class="entryheadercell">Condition</th>
-                <th class="entryheadercell">Credit Value</th>
+                <th class="entryheadercell">Value</th>
                 <th class="entryheadercell"></th>
             </tr>
         <?php owned_items_rows() ?>

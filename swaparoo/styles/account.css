@@ -1,13 +1,14 @@
 .account{
-    margin-left: 15%;
+    max-width: 90%;
+    margin: 0 auto;
 }
 
 
-h1 {
+.account h1 {
     font-size: 40px;
 }
 
-h2 {
+.account h2 {
     font-size: 30px;
 }
 
@@ -81,7 +82,8 @@ h2 {
 }
 
 .transacteditemstable {
-    min-width: 75%;
+    width: 100%;
+    max-width: 1200px;
     border-collapse:collapse;
 }
 
@@ -116,7 +118,8 @@ h2 {
 
 .transactioncell {
     color: #333333;
-    text-align: center;    
+    text-align: center;  
+    padding: 3px;  
 }
 
 .transactioncell, .creditcost i, .creditcost div, .transactiontitletext, .transactionauthortext {
@@ -162,17 +165,6 @@ h2 {
 }
 
 @media screen and (max-width: 1100px) {
-    .account{
-        margin-left: 50px;
-    }
-    .transacteditemstable {
-        margin-right: 50px;
-        
-    }
-
-    .transactioncell {
-        padding: 3px;
-    }
 
     .transactionheadercell {
         font-size: 18px;
@@ -182,16 +174,9 @@ h2 {
 
 
 @media screen and (max-width: 750px) {
-    .account{
-        margin-left: 20px;
-    }
 
     .balance i, .balance div {
         font-size: 30px;
-    }
-
-    .transacteditemstable {
-        margin-right: 20px;
     }
 
     .profilecell, .editbtn a, .editbtn a i {
@@ -207,9 +192,6 @@ h2 {
     }
 
     .transactioncell, .creditcost i, .creditcost div, .transactiontitletext, .transactionauthortext {
-        font-size: 16px;
-    }
-    .transactionheadercell {
         font-size: 16px;
     }
 }
