@@ -23,13 +23,13 @@ function profile_info() {
         <div class="profilerow">
             <div class="profilecell profilecellheader">Username</div>
             <div class="profilecell"><?= $name ?></div>
-            <div class="profilecell">
+            <div class="profilecell editbtn">
             </div>
         </div>
         <div class="profilerow">
             <div class="profilecell profilecellheader">Email Address</div>
             <div class="profilecell"><?= $email ?></div>
-            <div class="profilecell">
+            <div class="profilecell editbtn">
                 <a href="/swaparoo/account/changeemail/">
                     Edit <i class="fas fa-edit"></i>
                 </a>
@@ -38,7 +38,7 @@ function profile_info() {
         <div class="profilerow">
             <div class="profilecell profilecellheader">Password</div>
             <div class="profilecell">**********</div>
-            <div class="profilecell">
+            <div class="profilecell editbtn">
                 <a href="/swaparoo/account/changepassword/">
                     Edit <i class="fas fa-edit"></i>
                 </a>
@@ -85,7 +85,7 @@ function transactions_items_rows($transaction_types) {
             </td>
             <td class="transactioncell">$date_str</td>
             <td class="transactioncell">$order_status</td>
-            <td class="transactioncell">
+            <td class="transactioncell transactioncost">
             <div class=creditcost>
             <i class="fas fa-coins"></i>
             <div>$price</div>
