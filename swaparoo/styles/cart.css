@@ -7,7 +7,6 @@
     margin-top: 0px;
     box-sizing: content-box;
     padding: 10px;
-    /* display: flex; */
     vertical-align: top;
     box-shadow: 0px 0px 25px -8px rgba(0,0,0,0.75);
     transition: transform .5s;
@@ -20,16 +19,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%
+    width: 100%;
+    gap: 8%;
 }
 
 .cartitemwrapper > div {
-    /* flex: 1; */
     flex-grow: 1;
 }
 
 .cart > h1 {
-    /* margin-left: 20%; */
     text-align: center;
 }
 
@@ -45,12 +43,10 @@
 
 .cartitemtext a:hover {
     text-decoration: underline;
-    /* color: #333333; */
 }
 
 .cartitemtitletext, .cartitemauthortext {
     font-size: 25px;
-    /* text-decoration: none; */
 }
 
 .cartitemtitletext {
@@ -67,8 +63,6 @@
 
 .cartitemcreditcost {
     vertical-align: top;
-    /* margin-top: 125px; */
-    /* margin-left: 10%; */
 }
 
 .cartitemcreditcost i, .cartitemcreditcost div {
@@ -175,4 +169,89 @@
 .emptycart, .emptycart a {
     color: #333333;
     font-size: 30px;
+}
+
+.cartitemdetails {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%
+}
+
+.cartitemdetails > div {
+    flex-grow: 1;
+}
+
+@media screen and (max-width: 1100px) {
+    .cartitemdetails {
+        display: block;
+
+    }
+    .cartitemcontainer {
+        margin: 30px auto;
+    }
+
+    .removefromcartbutton {
+        width: 100%;
+    }
+
+    .removefromcartsubmit {
+        width: fit-content
+    }
+
+    .cartitemtitletext, .cartitemauthortext, .cartitemsellertext, .cartitemcreditcost, .removefromcartbutton {
+        text-align: center;
+    }
+
+    .cartitemsellertext, .cartitemcreditcost, .removefromcartbutton {
+        margin-top: 35px;
+    }
+
+    .cartitemcontainer {
+        width: 90%;
+        min-width: 0;
+    }
+
+    .ordertotal, .ordertotal i {
+        font-size: 35px;
+    }
+
+
+}
+
+@media screen and (max-width: 750px) {
+    .cartitemwrapper a img {
+        width: 150px;
+        height: 225px;
+    }
+    .cartitemcontainer {
+        margin: 20px auto;
+    }
+
+    .cartitemtitletext, .cartitemauthortext {
+        font-size: 22px;
+    }
+    
+    .cartitemsellertext {
+        font-size: 18px;
+    }
+    .cartitemcreditcost div, .cartitemcreditcost i {
+        font-size: 25px;
+    }
+
+    .removefromcartsubmit {
+        font-size: 18px;
+    }
+
+    .cartitemsellertext, .cartitemcreditcost, .removefromcartbutton {
+        margin-top: 20px;
+    }
+
+    .ordertotal, .ordertotal i {
+        font-size: 30px;
+    }
+
+    .submitorder {
+        font-size: 25px;
+    }
 }

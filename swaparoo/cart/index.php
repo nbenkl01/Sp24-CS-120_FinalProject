@@ -40,11 +40,12 @@
                 echo <<<ROW
                 <div class = cartitemcontainer>
                     <div class = "cartitemwrapper">
-                        <div class="cartitemimage">
-                            <a href="/swaparoo/items/items/?item=$item_id">    
-                                <img src="../../images/items/$item_id.webp">
-                            </a>
-                        </div>
+                    <div class="cartitemimage">
+                    <a href="/swaparoo/items/items/?item=$item_id">    
+                    <img src="../../images/items/$item_id.webp">
+                    </a>
+                    </div>
+                    <div class = "cartitemdetails">
                         <div class="cartitemtext">        
                             <a href="/swaparoo/items/items/?item=$item_id">
                                 <div class="cartitemtitletext">$title</div>
@@ -62,7 +63,8 @@
                                 <input type="hidden" value="$item_id" name="item_id">
                             </form>
                         </div>
-                    </div>    
+                    </div>
+                        </div>    
                 </div>
                 ROW;
             }
