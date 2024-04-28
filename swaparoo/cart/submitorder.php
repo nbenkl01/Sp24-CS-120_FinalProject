@@ -4,7 +4,8 @@
 <?php 
 if ($_POST['order_total'] > $_SESSION['credits_balance']) {
     $_SESSION['insufficient_funds'] = TRUE;
-    header("Location: /swaparoo/cart/");
+    // header("Location: /swaparoo/cart/");
+    echo '<script>window.location.href = "/swaparoo/cart/";</script>';
     
 } else {
     // Get All Items in cart
@@ -49,10 +50,13 @@ if ($_POST['order_total'] > $_SESSION['credits_balance']) {
         echo '<script>alert("Could not remove items from cart, please try again later!"); window.location.href = "index.php";</script>';
     }
     $_SESSION['num_cart_items'] = 0;
-    header("Location: /swaparoo/cart/thankyou/?" . http_build_query(
+
+    $pageref =  http_build_query(
         array(
             'order_total' => $_POST['order_total']
-        )));
+        ));
+    // header("Location: /swaparoo/cart/thankyou/?" .);
+    echo '<script>window.location.href = "/swaparoo/cart/thankyou/?' . $pageref . '";</script>';
 }
 ?>
 
