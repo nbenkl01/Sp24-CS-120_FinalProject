@@ -10,6 +10,7 @@ if (!$status) {
     echo '<script>alert("Could not update cart, please try again later!"); window.location.href = "index.php";</script>';
 }
 $_SESSION['num_cart_items'] -= 1;
-header("Location: /swaparoo/cart/");
+// header("Location: /swaparoo/cart/");
+echo '<script>window.location.href = "/swaparoo/cart/";</script>';
 ?>
 
