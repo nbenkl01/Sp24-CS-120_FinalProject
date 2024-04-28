@@ -14,6 +14,6 @@ $status = $stmt->execute();
 if (!$status) {
     echo '<script>alert("Could not update listing, please try again later!"); window.location.href = "index.php";</script>';
 }
-header("Location: /swaparoo/myitems/");
+echo '<script>window.location.href = "/swaparoo/myitems/";</script>';
 ?>
 
