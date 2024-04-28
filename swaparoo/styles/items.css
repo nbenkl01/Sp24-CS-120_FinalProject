@@ -1,13 +1,14 @@
 main .items {
-	width: 1180px;
-	margin: 0 auto;
+    width: 90%; /* Adjusted width for responsiveness */
+    max-width: 1180px; /* Added maximum width */
+    margin: 0 auto;
 }
 
 main .item,
-main .iteminfo
-{
-	width: 1050px;
-	margin: 0 auto;
+main .iteminfo {
+    width: 90%; /* Adjusted width for responsiveness */
+    max-width: 1050px; /* Added maximum width */
+    margin: 0 auto;
 }
 
 main .recentlyadded .items,
@@ -28,48 +29,38 @@ main .items .items-wrapper {
 } */
 .items .items-wrapper .item {
     display: block;
-	position: relative;
-    /* width: calc(25% - 20px); */
-    width: 230px;
-	/* flex: 0 1 calc(25% - 20px); */
-	overflow: hidden;
+    position: relative;
+    width: 90%; /* Adjusted width for responsiveness */
+    max-width: 230px; /* Added maximum width */
+    margin: 0 auto;
+    overflow: hidden;
     white-space: nowrap;
     background-color: #f2f2f2e7;
-    /* border-color: black; */
-
-    /* border: 1px solid #ccc; */
     box-shadow: 5px 8px;
-
     border-radius: 4px;
     padding: 0.5rem;
     text-decoration: none;
     margin-bottom: 1rem;
-    /* font-size: 1.1rem; */
     line-height: 1.5;
     color: #333;
 }
 
-main .recentlyadded .items .item{
-	display: block;
-	overflow: hidden;
-	width: 25%;
-	padding-bottom: 10px;
+main .recentlyadded .items .item {
+    display: block;
+    overflow: hidden;
+    width: 90%; /* Adjusted width for responsiveness */
+    max-width: calc(25% - 20px); /* Added maximum width */
+    padding-bottom: 10px;
 }
 
 .items .items-wrapper .item a {
     display: block;
     overflow: hidden;
     background-color: #ebe9e4;
-    /* border-color: black; */
-    
-    /* border: 1px solid #ccc;
-    box-shadow: 5px 10px; */
-
     border-radius: 4px;
     padding: 0.5rem;
     text-decoration: none;
     margin-bottom: 1rem;
-    /* font-size: 1.1rem; */
     line-height: 1.5;
     color: #333;
 }
@@ -94,40 +85,25 @@ main .items .items-wrapper .item img {
     display: block;
     top: 0;
     left: 0;
-    width: 400px;
-    height: 500px;
+    width: 50vw;
+    height: 62vw;
+    max-width: 400px;
+    max-height: 500px;
     margin-right: 20px;
     background: linear-gradient(90deg, rgba(2,0,36,.5) 0%, rgba(0,0,0,.5) 2%, rgba(255,255,255,.5) 3%, rgba(247,254,255,.5) 5%, rgba(0,0,0,.5) 7%, rgba(255,255,255,.5) 13%, rgba(255,255,255,.2) 100%);
     box-shadow: 25px 8px; 
     z-index: 1; /* Ensure the overlay appears above the image */
 }
 
-/* 
-.item .information {
-    display: flex;
-} */
-
-/* CSS for item content wrapper */
-/* .item.content-wrapper {
-    position: relative;
-} */
-
 /* CSS for image cover */
 img.cover {
     display: block;
-    width: 400px;
-    height: 500px;
+    width: 50vw;
+    height: 62vw;
+    max-width: 400px;
+    max-height: 500px;
     z-index: 0; /* Ensure the image appears below the overlay */
 }
-/* .item img.cover  {
-    width: 400px;
-    height: 500px;
-    opacity: 0.5;
-    position: relative;
-    top: 0;
-    left: 0;
-    background: linear-gradient(90deg, rgba(2,0,36,.5) 0%, rgba(0,0,0,.5) 2%, rgba(255,255,255,.5) 3%, rgba(247,254,255,.5) 5%, rgba(0,0,0,.5) 7%, rgba(255,255,255,.5) 13%, rgba(255,255,255,.2) 100%);
-  } */
 
 main .recentlyadded .items .item .name,
 main .items .items-wrapper .item .name {
@@ -177,7 +153,7 @@ main .items .items-wrapper .item:hover .name.marquee {
 
 main > .item {
 	display: flex;
-    justify-content: start;
+	justify-content: start;
 	padding: 40px 0;
 }
 
@@ -186,7 +162,7 @@ main > .item > div {
 }
 
 main > .item h1 {
-	font-size: 34px;
+	font-size: 34px; 
 	font-weight: normal;
 	margin: 0;
 	padding: 20px 0 10px 0;
@@ -198,7 +174,6 @@ main > .item .credit_value {
 	color: #999999;
 }
 
-
 main > .item form {
 	display: flex;
 	flex-flow: column;
@@ -206,12 +181,12 @@ main > .item form {
 }
 
 main > .item form select {
-    width: 400px;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    color: #555555;
-  }
+	width: 400px;
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	color: #555555;
+}
 
 main > .item form input[type="submit"] {
 	background: #4e5c70;
@@ -228,6 +203,59 @@ main > .item form input[type="submit"] {
 
 main > .item form input[type="submit"]:hover {
 	background: #434f61;
+}
+
+/* Media Query for 600px and below */
+@media screen and (max-width: 900px) {
+	main > .item {
+        display: flex;
+        justify-content: start;
+        padding: 5vw 0; /* 5% of the viewport width for padding */
+    }
+    
+    main > .item > div {
+        padding-left: 2.5vw; /* 2.5% of the viewport width for padding */
+    }
+    
+    main > .item h1 {
+        font-size: 4vw; /* 4% of the viewport width for font size */
+        font-weight: normal;
+        margin: 0;
+        padding: 2vw 0 1vw 0; /* 2% top, 1% bottom of the viewport width for padding */
+    }
+    
+    main > .item .credit_value {
+        display: block;
+        font-size: 2.5vw; /* 2.5% of the viewport width for font size */
+        color: #999999;
+    }
+    
+    main > .item form {
+        display: flex;
+        flex-flow: column;
+        margin: 5vw 0; /* 5% of the viewport width for margin */
+    }
+    
+    main > .item form select {
+        width: 70%; /* 70% of the parent width */
+        padding: 1.5vw; /* 1.5% of the viewport width for padding */
+        margin-bottom: 3vw; /* 3% of the viewport width for margin */
+        border: 0.2vw solid #ccc; /* 0.2% of the viewport width for border */
+        color: #555555;
+    }
+    
+    main > .item form input[type="submit"] {
+        background: #4e5c70;
+        border: 0;
+        color: #FFFFFF;
+        width: 70%; /* 70% of the parent width */
+        padding: 2vw 0; /* 2% top and bottom of the viewport width for padding */
+        text-transform: uppercase;
+        font-size: 10px + 1.5vw; /* 1.5% of the viewport width for font size */
+        font-weight: bold;
+        border-radius: 0.5vw; /* 0.5% of the viewport width for border radius */
+        cursor: pointer;
+    }
 }
 
 main > .items h1 {
@@ -292,6 +320,7 @@ main > .item section h2{
 	padding: 0 2rem;
 	border-bottom: 0.2rem solid #a1a1a1;
     color: #333;
+    display: inline-block; /* Change to inline-block */
 }
 
 .navigation-links a:hover {

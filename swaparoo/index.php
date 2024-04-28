@@ -25,7 +25,7 @@ $frugal_finds = $stmt->fetchAll(PDO::FETCH_ASSOC);
 function displayItems($items) {
     $html = '';
     foreach ($items as $item) {
-        $nameClass = (strlen($item['title'])) > 22 ? 'name marquee' : 'name';
+        $nameClass = (strlen($item['title'])) > 20 ? 'name marquee' : 'name';
         $html .= '
             <div class="item">
                 <a href="/swaparoo/items/items/?item=' . $item['item_id'] . '">

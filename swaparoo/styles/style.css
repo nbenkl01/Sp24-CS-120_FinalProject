@@ -132,13 +132,11 @@ header .link-icons a span {
 main .featured {
 	display: flex;
 	flex-direction: column;
-	/* background-image: linear-gradient(rgba(165, 165, 165, 0.527),rgba(171, 170, 170, 0.5)) ,  url(https://media.audleytravel.com/-/media/images/home/north-africa-and-the-middle-east/oman/letterbox-images/new-istock/istock_000064200767_desert_dunes.jpg?q=79&w=1920&h=640); */
 	background-image: linear-gradient(#ffdab9,#efac71);
-	/* background-image: url(https://media.audleytravel.com/-/media/images/home/north-africa-and-the-middle-east/oman/letterbox-images/new-istock/istock_000064200767_desert_dunes.jpg?q=79&w=1920&h=640); */
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: center;
-	height: 500px;
+	background-size: cover;
+	height: calc(55vh - 10px);
 	align-items: center;
 	justify-content: flex-end;
 	text-align: center;
@@ -149,7 +147,8 @@ main .featured {
 
 main .featured img {
 	max-width: auto;
-	height: 350px;
+	height: 70%;
+    max-height: 350px;
 	border-radius: 50%; 
 	display: block;
 	margin: 0 auto;
@@ -160,21 +159,23 @@ main .featured h2,
 main .featured p {
 	display: inline-block;
 	margin: 0;
-	width: 1050px;
+	width: 90%;
+    max-width: 1050px;
 	color: #ffffff;
 	z-index: 9999;
 }
 
 main .featured h2 {
 	font-family: Rockwell, Courier Bold, Courier, Georgia, Times, Times New Roman, serif;
-	font-size: 68px;
-	padding-bottom: 10px;
-	text-shadow: #fdcc5b 0px 0px 20px;
+	font-size: calc(20px + 3vw);
+    padding-bottom: 10px;
+    text-shadow: #fdcc5b 0px 0px 2vw;
 }
 
 main .featured p {
-	font-size: 24px;
-	text-shadow: #fdcc5b 0px 0px 6px;
+	font-size:calc(20px + 1vw);
+    text-shadow: #fdcc5b 0px 0px 0.6vw;
+
 }
 
 main .register .registration-wrapper {

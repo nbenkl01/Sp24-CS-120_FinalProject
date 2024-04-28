@@ -15,13 +15,15 @@ if (!$status) {
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 if($result['owner_id'] == $_SESSION['user_id']) {
     $_SESSION['item_already_owned_alert'] = TRUE;
-    header("Location: " . $_SERVER['HTTP_REFERER']);
+    // header("Location: " . $_SERVER['HTTP_REFERER']);
+    echo '<script>window.location.href = "'. $_SERVER["HTTP_REFERER"] . '";</script>';
     exit();
 }
 
 if($result['available'] == '0') {
     $_SESSION['item_unavailable_alert'] = TRUE;
-    header("Location: " . $_SERVER['HTTP_REFERER']);
+    // header("Location: " . $_SERVER['HTTP_REFERER']);
+    echo '<script>window.location.href = "'. $_SERVER["HTTP_REFERER"] . '";</script>';
     exit();
 }
 
@@ -38,6 +40,7 @@ if ($stmt->rowCount() != 0) {
     $_SESSION['num_cart_items'] += 1;
     $_SESSION['wigglecart'] = TRUE;
 }
-header("Location: " . $_SERVER['HTTP_REFERER']);
+// header("Location: " . $_SERVER['HTTP_REFERER']);
+echo '<script>window.location.href = "'. $_SERVER["HTTP_REFERER"] . '";</script>';
 ?>
 
