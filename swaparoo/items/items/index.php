@@ -251,6 +251,12 @@ $comments_info = $stmt->fetch(PDO::FETCH_ASSOC);
             $initialOwner = ($initialOwner) ? $initialOwner['username'] : 'Unknown';
             // echo '<li><strong> First Listed by ' .  htmlspecialchars($initialOwner) . ' on ' . $listingDate . '</strong>';
             
+            if (count($transactions) > 0) {
+                show_item_history($transactions, $pdo);
+            }
+             else {
+                echo '<li>No history available for this item.</li>';
+            }
             $html = '';
             $html .= '<li style="--accent-color:#41516C">';
             $html .= '<div class="date">' . $listingDate . '</div>';
@@ -259,12 +265,6 @@ $comments_info = $stmt->fetch(PDO::FETCH_ASSOC);
             $html .= '<div class="descr">First Listed by <strong>' .  htmlspecialchars($initialOwner) . '</strong> on ' . $listingDate . '</div>';
             $html .= '</li>';
             echo $html;
-            if (count($transactions) > 0) {
-                show_item_history($transactions, $pdo);
-            }
-             else {
-                echo '<li>No history available for this item.</li>';
-            }
             ?>
         </ul>
     </div>

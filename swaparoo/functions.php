@@ -65,17 +65,13 @@ function user_header($title) {
         <header class = "userheader">
             <div class = small_device_name>
                 <a href="/swaparoo/">
-                    <i class="fas fa-tents"></i>
                     Swap-a-Roo
-                    <i class="fas fa-person-circle-question"></i>
                 </a>
             </div>
             <div class="content-wrapper">
                 <h1>
                     <a href="/swaparoo/">
-                        <i class="fas fa-tents"></i>
                         Swap-a-Roo
-                        <i class="fas fa-person-circle-question"></i>
                     </a>
                 </h1>
                 <nav>
@@ -129,17 +125,13 @@ function nonuser_header($title) {
         <header class = "nonuserheader">
             <div class = small_device_name>
                 <a href="/swaparoo/">
-                    <i class="fas fa-tents"></i>
                     Swap-a-Roo
-                    <i class="fas fa-person-circle-question"></i>
                 </a>
             </div>
             <div class="content-wrapper">
                 <h1>
                     <a href="/swaparoo/">
-                        <i class="fas fa-tents"></i>
                         Swap-a-Roo
-                        <i class="fas fa-person-circle-question"></i>
                     </a>
                 </h1>
                 <nav>
