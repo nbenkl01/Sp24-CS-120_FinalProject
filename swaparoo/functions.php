@@ -26,6 +26,7 @@ function shared_header($title) {
         nonuser_header($title);
     }
     else{
+        $_SESSION['credits_balance'] = get_user_credits();
         user_header($title);
     }
 }
@@ -212,5 +213,14 @@ function add_to_cart_alerts() {
         echo '<script>alert("This item is not available for swap.");</script>';
         unset($_SESSION['item_unavailable_alert']);
     }
+}
+
+function get_user_credits() {
+    $pdo = connect_mysql();
+    $stmt = $pdo->prepare('SELECT credits_balance FROM Users WHERE user_id = ?;');
+    $stmt->bindParam(1, $_SESSION['user_id']);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['credits_balance'];
 }
 ?>

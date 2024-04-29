@@ -27,7 +27,7 @@
     flex-grow: 1;
 }
 
-.cart h1 {
+.cart h1, .orderconfirmation h1 {
     text-align: center;
     font-size: 40px;
 }

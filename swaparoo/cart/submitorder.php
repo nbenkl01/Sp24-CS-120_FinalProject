@@ -2,6 +2,9 @@
 <?php $pdo = connect_mysql(); date_default_timezone_set('America/New_York'); ?>
 
 <?php 
+
+$_SESSION['credits_balance'] = get_user_credits();
+
 if ($_POST['order_total'] > $_SESSION['credits_balance']) {
     $_SESSION['insufficient_funds'] = TRUE;
     // header("Location: /swaparoo/cart/");

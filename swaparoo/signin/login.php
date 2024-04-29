@@ -8,7 +8,7 @@ if ( !isset($_POST['username'], $_POST['password']) ) {
     exit;
 }
 
-if ($stmt = $pdo->prepare('SELECT user_id, password, credits_balance FROM Users WHERE username = ?')) {
+if ($stmt = $pdo->prepare('SELECT user_id, password FROM Users WHERE username = ?')) {
     $stmt->bindParam(1, $_POST['username']);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -18,7 +18,7 @@ if ($stmt = $pdo->prepare('SELECT user_id, password, credits_balance FROM Users 
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['name'] = $_POST['username'];
             $_SESSION['user_id'] = $result['user_id'];
-            $_SESSION['credits_balance'] = $result['credits_balance'];
+            // $_SESSION['credits_balance'] = $result['credits_balance'];
             // echo '<script>alert("Welcome back, ' . htmlspecialchars($_SESSION['name'], ENT_QUOTES) . '!"); window.location.href = "../";</script>';
             
             $pdo2 = connect_mysql();
