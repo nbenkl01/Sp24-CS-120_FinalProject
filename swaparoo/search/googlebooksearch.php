@@ -21,7 +21,8 @@ if (isset($_GET['q']) && isset($_GET['n'])) {
             $saleInfo = $item['saleInfo'] ?? [];
             $isbn = '';
             foreach ($volumeInfo['industryIdentifiers'] ?? [] as $identifier) {
-                if ($identifier['type'] === 'ISBN_10' || $identifier['type'] === 'ISBN_13') {
+                // use ISBN_13 as the identifier
+                if ($identifier['type'] === 'ISBN_13') {
                     $isbn = $identifier['identifier'];
                     break;
                 }

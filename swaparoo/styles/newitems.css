@@ -201,3 +201,19 @@ button[type="submit"]:hover {
 .cancel-button:hover {
     background-color: #bbb;
 }
+
+.quote-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#manualCreditValue {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+#getQuote {
+    white-space: nowrap;
+    padding: 6px 12px;
+}

@@ -29,7 +29,10 @@ shared_header('Add New Book Listing');
                 <option value='New'>New</option>
                 <option value='Used'>Used</option>
             </select>
-            <input type='number' id='manualCreditValue' name='credit_value' placeholder="Credit Value" min='1' required>
+            <div class="quote-wrapper">
+                <input type='number' id='manualCreditValue' name='credit_value' placeholder="Credit Value" min='1' required>
+                <button type='button' id='getQuote' onclick='getPriceQuote()'>Get your quote</button>
+            </div>
             <label for='manualCoverImage'>Upload Book Cover (Max 70KB, .webp format):</label>
             <input type='file' id='manualCoverImage' name='coverImage' accept=".webp" onchange="checkFile()">
             <div class="button-container">

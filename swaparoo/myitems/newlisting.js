@@ -357,3 +357,35 @@ function generateRandomString(length) {
     }
     return result;
 }
+
+function getPriceQuote() {
+    const title = document.getElementById('manualName').value;
+    const isbn = document.getElementById('manualISBN').value;
+    const condition = document.getElementById('manualCondition').value;
+
+    if (!title || !isbn || !condition) {
+        alert('Please fill in the title, ISBN, and condition to get a quote.');
+        return;
+    }
+
+    // perform search to googlebooksearch.php based on isbn and title
+    fetch(`../search/googlebooksearch.php?q=${encodeURIComponent(isbn)}&n=12`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+            } else if (data.books && data.books.length > 0) {
+                // assume the first book is the correct one
+                const book = data.books[0];
+                // calculate the credit value
+                const basePrice = book.usdPrice || 10; // default to $10 if no price is found
+                const creditMultiplier = condition === 'New' ? 9 : 6;
+                const creditValue = Math.round((basePrice * creditMultiplier) / 5) * 5;
+                document.getElementById('manualCreditValue').value = creditValue;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('There was an error getting the quote.');
+        });
+}
