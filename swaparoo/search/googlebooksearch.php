@@ -9,7 +9,6 @@ if (isset($_GET['q']) && isset($_GET['n'])) {
     $apiKey = GOOGLE_API_KEY;
     $timestamp = time(); // current timestamp as cache buster
     $url = "https://www.googleapis.com/books/v1/volumes?q=$bookName&maxResults=$numResults&key=$apiKey&timestamp=$timestamp";
-    // $url = "https://www.googleapis.com/books/v1/volumes?q=$bookName&maxResults=$numResults&key=$apiKey";
 
     $response = file_get_contents($url);
     if ($response) {
@@ -19,14 +18,22 @@ if (isset($_GET['q']) && isset($_GET['n'])) {
 
         foreach (array_slice($items, 0, $numResults) as $item) {
             $volumeInfo = $item['volumeInfo'] ?? [];
-            $industryIdentifiers = $volumeInfo['industryIdentifiers'] ?? [];
-
+            $saleInfo = $item['saleInfo'] ?? [];
             $isbn = '';
-            foreach ($industryIdentifiers as $identifier) {
-                if ($identifier['type'] === 'ISBN_10') {
+            foreach ($volumeInfo['industryIdentifiers'] ?? [] as $identifier) {
+                if ($identifier['type'] === 'ISBN_10' || $identifier['type'] === 'ISBN_13') {
                     $isbn = $identifier['identifier'];
                     break;
                 }
+            }
+
+            // Default to 10 if no specific price
+            $usdPrice = 10;
+            // Check for retailPrice first
+            if (isset($saleInfo['retailPrice']) && $saleInfo['retailPrice']['currencyCode'] === 'USD') {
+                $usdPrice = $saleInfo['retailPrice']['amount'];
+            } elseif (isset($saleInfo['listPrice']) && $saleInfo['listPrice']['currencyCode'] === 'USD') {
+                $usdPrice = $saleInfo['listPrice']['amount'];
             }
 
             $result[] = [
@@ -35,11 +42,11 @@ if (isset($_GET['q']) && isset($_GET['n'])) {
                 'publisher' => $volumeInfo['publisher'] ?? 'No publisher listed',
                 'description' => $volumeInfo['description'] ?? 'No description available',
                 'ISBN' => $isbn,
-                'smallThumbnail' => $volumeInfo['imageLinks']['smallThumbnail'] ?? 'No image available'
+                'smallThumbnail' => $volumeInfo['imageLinks']['smallThumbnail'] ?? 'No image available',
+                'usdPrice' => $usdPrice
             ];
         }
 
-        // include the data_amount field in the JSON output
         $output = [
             'data_amount' => count($result),
             'books' => $result

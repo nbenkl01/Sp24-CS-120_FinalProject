@@ -45,11 +45,12 @@ function searchBooks() {
 
 function selectBook(bookID) {
     const book = booksData[bookID];
-    showBookDetailsModal(book, bookID);
+    const usdPrice = book.usdPrice;
+
+    showBookDetailsModal(book, bookID, usdPrice);
 }
 
-function showBookDetailsModal(book, bookID) {
-    console.log('Book details:', book);
+function showBookDetailsModal(book, bookID, usdPrice) {
     const overlay = document.createElement('div');
     overlay.id = 'overlay';
     overlay.innerHTML = `
@@ -58,7 +59,7 @@ function showBookDetailsModal(book, bookID) {
             <p>Author: ${book.authors.join(', ')}</p>
             <p>Enter additional information for your book listing:</p>
             <label for="condition-${bookID}">Condition:</label>
-            <select id="condition-${bookID}" name="condition">
+            <select id="condition-${bookID}" name="condition" onchange="updateCreditValue('${bookID}', ${usdPrice})">
                 <option value="">Select Condition</option>
                 <option value="New">New</option>
                 <option value="Used">Used</option>
@@ -70,6 +71,19 @@ function showBookDetailsModal(book, bookID) {
         </div>
     `;
     document.body.appendChild(overlay);
+}
+
+function updateCreditValue(bookID, usdPrice) {
+    const condition = document.getElementById(`condition-${bookID}`).value;
+    let creditValue = usdPrice;
+    if (condition === "New") {
+        // If new, multiply by 9, round to nearest 5
+        creditValue = Math.round(usdPrice * 9 / 5) * 5; 
+    } else if (condition === "Used") {
+        // If used, multiply by 6, round to nearest 5
+        creditValue = Math.round(usdPrice * 6 / 5) * 5; 
+    }
+    document.getElementById(`credit_value-${bookID}`).value = creditValue;
 }
 
 function addBookToListing(bookID) {
@@ -86,9 +100,11 @@ function addBookToListing(bookID) {
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Server Response:', data); // print the server response, including item_id and thumbnailUrl
+        // print the server response, including item_id and thumbnailUrl
+        console.log('Server Response:', data); 
         showPopupMessage(data.success || data.error);
-        closeOverlay(); // close the overlay on success or display a message
+        // close the overlay on success or display a message
+        closeOverlay(); 
     })
     .catch(error => {
         console.error('Error adding book:', error);
