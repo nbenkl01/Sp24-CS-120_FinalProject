@@ -92,12 +92,14 @@ function user_header($title) {
                         <i class="fas fa-shopping-cart"></i>
                         <span><?=$_SESSION['num_cart_items']?></span>
                     </a>
-                    <div class="headerbalance">
-                        <i class="fas fa-coins"></i>
-                        <div>
-                            <?=number_format($_SESSION['credits_balance'])?>
+                    <a href="/swaparoo/account/payment/index.php" class="headerbalance">
+                        <div class="headerbalance">
+                            <i class="fas fa-coins"></i>
+                            <div>
+                                <?=number_format($_SESSION['credits_balance'])?>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </header>
