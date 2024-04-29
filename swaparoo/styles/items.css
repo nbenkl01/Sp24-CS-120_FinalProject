@@ -937,3 +937,7 @@ main > .item section h2{
     content: '✕'; /* Custom bullet */
     margin-right: 5px; /* Spacing between bullet and text */
 }
+
+.author-select{
+    width: 100%;
+}
