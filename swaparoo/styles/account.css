@@ -4,7 +4,7 @@
 }
 
 
-.account h1 {
+.account h1, .changeemail h1, .changepassword h1 {
     font-size: 40px;
 }
 
